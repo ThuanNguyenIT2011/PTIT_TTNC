@@ -1186,7 +1186,6 @@ class SearchFileFrame(ttk.Frame):
         left_card.grid(row=1, column=0, sticky="nsew", padx=(0, 10))
         left_card.grid_columnconfigure(0, weight=1)
         
-        # QUAN TRỌNG: Cho hàng chứa Text Widget (hàng 2) giãn nở tối đa
         left_card.grid_rowconfigure(2, weight=1) 
 
         right_card = ttk.Frame(self, style="Card.TFrame", padding=16)
@@ -1202,7 +1201,6 @@ class SearchFileFrame(ttk.Frame):
             font=("Segoe UI", 10, "italic")
         ).grid(row=1, column=0, sticky="w", pady=(4, 10))
 
-        # 2. File text widget (Đưa vào hàng 2 để nó fill khoảng giữa)
         file_text_frame = tk.Frame(left_card, bg="#d1d5db", highlightthickness=0, relief="flat")
         file_text_frame.grid(row=2, column=0, sticky="nsew", pady=(8, 12))
         file_text_frame.grid_columnconfigure(0, weight=1)
@@ -1222,17 +1220,14 @@ class SearchFileFrame(ttk.Frame):
             borderwidth=0,
             highlightthickness=0
         )
-        # CHỈ GRID 1 LẦN DUY NHẤT
         self.file_text_widget.grid(row=0, column=0, sticky="nsew", padx=1, pady=1)
 
-        # 3. Các nút bấm (Đẩy xuống hàng 3)
         top_buttons = tk.Frame(left_card, bg="#ffffff")
         top_buttons.grid(row=3, column=0, sticky="w", pady=(0, 8))
 
         ttk.Button(top_buttons, text="Upload File", command=self.upload_file, style="Simulation.TButton").pack(side="left")
         ttk.Button(top_buttons, text="Clear Highlight", command=self.clear_highlight, style="Clear.TButton").pack(side="left", padx=8)
 
-        # 4. Khu vực Search (Đẩy xuống hàng 4)
         search_box = tk.Frame(left_card, bg="#ffffff")
         search_box.grid(row=4, column=0, sticky="ew")
         search_box.grid_columnconfigure(1, weight=1)
@@ -1308,7 +1303,6 @@ class SearchFileFrame(ttk.Frame):
     #     value = tk.Label(container, textvariable=value_var, bg="#f9fafb", fg="#111827", font=("Consolas", 11), justify="left", wraplength=300)
     #     value.grid(row=1, column=0, sticky="w", padx=10, pady=(0, 8))
     def _result_item(self, parent, row, label_text, value_var):
-        # Container chính: Dùng highlightthickness để tạo viền mảnh thay cho bd=1
         container = tk.Frame(
             parent, 
             bg="#ffffff", 
@@ -1496,9 +1490,9 @@ class CheckPerformanceFrame(ttk.Frame):
         # preview_card.grid_columnconfigure(0, weight=1)
         # preview_card.grid_rowconfigure(1, weight=3)
         # preview_card.grid_rowconfigure(2, weight=2)
-        preview_card.grid_rowconfigure(1, weight=1) # Cho bảng giãn nở vừa phải
-        preview_card.grid_rowconfigure(2, weight=0) # Nhãn tiêu đề không cần giãn (giữ nguyên chữ)
-        preview_card.grid_rowconfigure(3, weight=1) # Cho ô Chi tiết record giãn nở phần còn lại
+        preview_card.grid_rowconfigure(1, weight=1) 
+        preview_card.grid_rowconfigure(2, weight=0) 
+        preview_card.grid_rowconfigure(3, weight=1) 
 
         ttk.Label(form_card, text="Data Generation Parameters", style="ResultTitle.TLabel").grid(
             row=0, column=0, columnspan=2, sticky="w", pady=(0, 12)
@@ -1530,12 +1524,11 @@ class CheckPerformanceFrame(ttk.Frame):
                 ttk.Label(form_card, text="language", style="Label.TLabel").grid(
                     row=row_idx, column=0, sticky="w", padx=(0, 8), pady=6
                 )
-                # Sử dụng Combobox thay vì Entry
                 lang_combo = ttk.Combobox(
                     form_card, 
                     textvariable=self.language_var,
                     values= list(TextPatternGenerator.LANGUAGE_CHARSETS.keys()),
-                    state="readonly", # Ngăn người dùng tự nhập text
+                    state="readonly", 
                     font=("Segoe UI", 10)
                 )
                 lang_combo.grid(row=row_idx, column=1, sticky="ew", pady=6)
