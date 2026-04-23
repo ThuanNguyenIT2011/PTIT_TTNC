@@ -1,0 +1,7 @@
+# Yêu cầu phiên bản Python: >= 3.8
+
+# Các thư viện cần thiết cho dự án:
+matplotlib
+pypdf
+python-docx
+openpyxl
