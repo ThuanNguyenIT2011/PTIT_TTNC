@@ -2208,12 +2208,29 @@ class CheckPerformanceFrame(ttk.Frame):
         tk.Label(summary_container, text=f"Total Records Processed: {len(self.performance_results)}", 
                 bg="#ffffff", fg="#111827", font=("Cambria", 11, "bold")).grid(row=5, column=0, columnspan=3, pady=(15, 0), sticky="w")
         
+        # create_modern_button(
+        #     summary_container,
+        #     text="Export to CSV",
+        #     command=self.export_to_csv,
+        #     style="Search.TButton"
+        # ).grid(row=6, column=0, columnspan=3, pady=(15, 0), sticky="w")
+
+        btn_frame = tk.Frame(summary_container, bg="#ffffff")
+        btn_frame.grid(row=6, column=0, columnspan=3, pady=(15, 0), sticky="w")
+
         create_modern_button(
-            summary_container,
+            btn_frame,
             text="Export to CSV",
             command=self.export_to_csv,
             style="Search.TButton"
-        ).grid(row=6, column=0, columnspan=3, pady=(15, 0), sticky="w")
+        ).pack(side="left", padx=(0, 8))
+
+        create_modern_button(
+            btn_frame,
+            text="Export to PDF",
+            command=self.export_to_pdf,
+            style="Simulation.TButton"
+        ).pack(side="left")
 
         # fig = Figure(figsize=(5.5, 5.0), dpi=100)
         # ax1 = fig.add_subplot(211)
@@ -2301,6 +2318,107 @@ class CheckPerformanceFrame(ttk.Frame):
             messagebox.showinfo("Thành công", f"Đã xuất dữ liệu ra file:\n{file_path}")
         except Exception as e:
             messagebox.showerror("Lỗi", f"Không thể lưu file: {str(e)}")
+
+    def export_to_pdf(self):
+        if not self.performance_results:
+            messagebox.showwarning("Không có dữ liệu", "Không có dữ liệu để xuất.")
+            return
+
+        file_path = filedialog.asksaveasfilename(
+            defaultextension=".pdf",
+            filetypes=[("PDF files", "*.pdf"), ("All files", "*.*")],
+            title="Lưu báo cáo PDF"
+        )
+
+        if not file_path:
+            return
+
+        try:
+            from matplotlib.backends.backend_pdf import PdfPages
+            from datetime import datetime
+            
+            with PdfPages(file_path) as pdf:
+                # --- Trang 1: Summary Table ---
+                summary_fig = Figure(figsize=(8.27, 11.69), dpi=100, facecolor='#ffffff') # Khổ giấy A4
+                ax = summary_fig.add_subplot(111)
+                ax.axis('off')
+                
+                summary_fig.text(0.5, 0.85, "STRING MATCHING PERFORMANCE REPORT", 
+                                 fontsize=18, fontweight='bold', ha='center', color='#0f172a')
+                
+                summary_fig.text(0.5, 0.81, f"Generated on: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}", 
+                                 fontsize=10, ha='center', color='#64748b')
+                
+                summary_fig.text(0.5, 0.77, f"Total Records Processed: {len(self.performance_results)}", 
+                                 fontsize=12, ha='center', color='#10b981', fontweight='bold')
+                
+                total_bf_time = sum(x["bruteforce_time_ms"] for x in self.performance_results)
+                total_bm_time = sum(x["boyermoore_time_ms"] for x in self.performance_results)
+                total_bf_comp = sum(x["bruteforce_comparisons"] for x in self.performance_results)
+                total_bm_comp = sum(x["boyermoore_comparisons"] for x in self.performance_results)
+
+                avg_bf_time = total_bf_time / len(self.performance_results)
+                avg_bm_time = total_bm_time / len(self.performance_results)
+                avg_bf_comp = total_bf_comp / len(self.performance_results)
+                avg_bm_comp = total_bm_comp / len(self.performance_results)
+
+                cell_text = [
+                    ["Metric", "Brute Force", "Boyer Moore"],
+                    ["Total Time (ms)", f"{total_bf_time:.4f}", f"{total_bm_time:.4f}"],
+                    ["Average Time (ms)", f"{avg_bf_time:.4f}", f"{avg_bm_time:.4f}"],
+                    ["Total Comparisons", f"{total_bf_comp}", f"{total_bm_comp}"],
+                    ["Average Comparisons", f"{avg_bf_comp:.2f}", f"{avg_bm_comp:.2f}"]
+                ]
+                
+                table = ax.table(cellText=cell_text, loc='center', cellLoc='center', colWidths=[0.3, 0.25, 0.25])
+                table.scale(1, 2.5)
+                table.auto_set_font_size(False)
+                table.set_fontsize(11)
+                
+                for (row, col), cell in table.get_celld().items():
+                    cell.set_edgecolor('#cbd5e1')
+                    if row == 0:
+                        cell.set_text_props(weight='bold', color='white')
+                        cell.set_facecolor('#0f172a')
+                    elif col == 0:
+                        cell.set_text_props(weight='bold', color='#1e293b')
+                        cell.set_facecolor('#f8fafc')
+                    else:
+                        # Tô màu xanh ngọc cho thuật toán có hiệu năng tốt hơn
+                        if row in [1, 2, 3, 4]:
+                            bf_val, bm_val = float(cell_text[row][1]), float(cell_text[row][2])
+                            if col == 1 and bf_val < bm_val:
+                                cell.set_text_props(color='#10b981', weight='bold')
+                            elif col == 2 and bm_val < bf_val:
+                                cell.set_text_props(color='#10b981', weight='bold')
+
+                pdf.savefig(summary_fig)
+                
+                # --- Trang 2: Charts ---
+                chart_fig = Figure(figsize=(8.27, 11.69), dpi=100, facecolor='#ffffff')
+                chart_fig.subplots_adjust(hspace=0.4, top=0.8)
+                chart_fig.text(0.5, 0.88, "PERFORMANCE CHARTS", fontsize=16, fontweight='bold', ha='center', color='#0f172a')
+
+                ax1 = chart_fig.add_subplot(211)
+                ax1.bar(["Brute Force", "Boyer Moore"], [avg_bf_time, avg_bm_time], color=["#94a3b8", "#10b981"], width=0.5)
+                ax1.set_title("Average Processing Time (ms)", pad=15, fontsize=12, fontweight='bold')
+                ax1.set_ylabel("ms")
+
+                ax2 = chart_fig.add_subplot(212)
+                ax2.bar(["Brute Force", "Boyer Moore"], [avg_bf_comp, avg_bm_comp], color=["#94a3b8", "#10b981"], width=0.5)
+                ax2.set_title("Average Comparisons", pad=15, fontsize=12, fontweight='bold')
+                ax2.set_ylabel("count")
+
+                for ax_ in [ax1, ax2]:
+                    ax_.spines['top'].set_visible(False); ax_.spines['right'].set_visible(False)
+                    ax_.spines['left'].set_color('#e2e8f0'); ax_.spines['bottom'].set_color('#e2e8f0')
+                    ax_.yaxis.grid(True, linestyle='--', alpha=0.5); ax_.set_axisbelow(True)
+
+                pdf.savefig(chart_fig)
+
+            messagebox.showinfo("Thành công", f"Đã xuất báo cáo PDF ra file:\n{file_path}")
+        except Exception as e:
+            messagebox.showerror("Lỗi", f"Không thể lưu file PDF: {str(e)}")
 
 if __name__ == "__main__":
     app = DesktopSearchApp()
