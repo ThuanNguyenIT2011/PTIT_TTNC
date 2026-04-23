@@ -1,4 +1,5 @@
 import json
+import csv
 from tkinter import BooleanVar
 from tkinter import Toplevel
 from tkinter import font as tkfont
@@ -2206,6 +2207,13 @@ class CheckPerformanceFrame(ttk.Frame):
 
         tk.Label(summary_container, text=f"Total Records Processed: {len(self.performance_results)}", 
                 bg="#ffffff", fg="#111827", font=("Cambria", 11, "bold")).grid(row=5, column=0, columnspan=3, pady=(15, 0), sticky="w")
+        
+        create_modern_button(
+            summary_container,
+            text="Export to CSV",
+            command=self.export_to_csv,
+            style="Search.TButton"
+        ).grid(row=6, column=0, columnspan=3, pady=(15, 0), sticky="w")
 
         # fig = Figure(figsize=(5.5, 5.0), dpi=100)
         # ax1 = fig.add_subplot(211)
@@ -2260,6 +2268,39 @@ class CheckPerformanceFrame(ttk.Frame):
         canvas.draw()
         canvas.get_tk_widget().config(bg="#ffffff", highlightthickness=0) 
         canvas.get_tk_widget().grid(row=1, column=0, sticky="nsew", pady=(10, 0))
+
+    def export_to_csv(self):
+        if not self.performance_results:
+            messagebox.showwarning("Không có dữ liệu", "Không có dữ liệu để xuất.")
+            return
+
+        file_path = filedialog.asksaveasfilename(
+            defaultextension=".csv",
+            filetypes=[("CSV files", "*.csv"), ("All files", "*.*")],
+            title="Lưu kết quả Performance"
+        )
+
+        if not file_path:
+            return
+
+        try:
+            with open(file_path, mode='w', newline='', encoding='utf-8-sig') as f:
+                writer = csv.writer(f)
+                # Header
+                writer.writerow([
+                    "Language", "Text", "Pattern", "Text Length", "Pattern Length",
+                    "BF Positions", "BF Count", "BF Time (ms)", "BF Comparisons",
+                    "BM Positions", "BM Count", "BM Time (ms)", "BM Comparisons"
+                ])
+                for row in self.performance_results:
+                    writer.writerow([
+                        row["language"], row["text"], row["pattern"], row["text_length"], row["pattern_length"],
+                        str(row["bruteforce_positions"]), row["bruteforce_count"], f"{row['bruteforce_time_ms']:.6f}", row["bruteforce_comparisons"],
+                        str(row["boyermoore_positions"]), row["boyermoore_count"], f"{row['boyermoore_time_ms']:.6f}", row["boyermoore_comparisons"]
+                    ])
+            messagebox.showinfo("Thành công", f"Đã xuất dữ liệu ra file:\n{file_path}")
+        except Exception as e:
+            messagebox.showerror("Lỗi", f"Không thể lưu file: {str(e)}")
 
 if __name__ == "__main__":
     app = DesktopSearchApp()
