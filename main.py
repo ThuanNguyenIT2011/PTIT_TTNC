@@ -161,7 +161,7 @@ class DesktopSearchApp(tk.Tk):
         self.option_add("TCombobox*Listbox.foreground", "#374151")
         self.option_add("TCombobox*Listbox.selectBackground", "#10b981")
         self.option_add("TCombobox*Listbox.selectForeground", "#ffffff")
-        self.option_add("TCombobox*Listbox.font", ("Segoe UI", 11))
+        self.option_add("TCombobox*Listbox.font", ("Cambria", 11))
         self.option_add("TCombobox*Listbox.relief", "flat")
         self.option_add("TCombobox*Listbox.borderWidth", "0")
         # =========================================
@@ -230,7 +230,7 @@ class DesktopSearchApp(tk.Tk):
             rowheight=34,
             fieldbackground="#ffffff",
             borderwidth=0,
-            font=("Segoe UI", 10)
+            font=("Cambria", 10)
         )
 
         style.configure(
@@ -238,7 +238,7 @@ class DesktopSearchApp(tk.Tk):
             background="#e5e7eb",
             foreground="#111827",
             relief="flat",
-            font=("Segoe UI", 10, "bold"),
+            font=("Cambria", 10, "bold"),
             padding=8
         )
 
@@ -256,7 +256,7 @@ class DesktopSearchApp(tk.Tk):
 
         style.configure(
             "Nav.TButton",
-            font=("Segoe UI", 11, "bold"),
+            font=("Cambria", 11, "bold"),
             padding=10,
             anchor="w"
         )
@@ -268,7 +268,7 @@ class DesktopSearchApp(tk.Tk):
 
         style.configure(
             "NavButton.TButton",
-            font=("Segoe UI", 11, "bold"),
+            font=("Cambria", 11, "bold"),
             foreground="#cbd5e1",
             background="#111827",
             borderwidth=0,
@@ -284,7 +284,7 @@ class DesktopSearchApp(tk.Tk):
 
         style.configure(
             "NavButton.Active.TButton",
-            font=("Segoe UI", 11, "bold"),
+            font=("Cambria", 11, "bold"),
             foreground="#ffffff",
             background="#0d9488",
             borderwidth=0,
@@ -298,10 +298,10 @@ class DesktopSearchApp(tk.Tk):
             foreground=[("active", "#ffffff"), ("pressed", "#ffffff")]
         )
 
-        style.configure("Title.TLabel", font=("Segoe UI", 18, "bold"), background="#f4f6f8")
-        style.configure("Label.TLabel", font=("Segoe UI", 11), background="#ffffff")
-        style.configure("Info.TLabel", font=("Segoe UI", 10), background="#ffffff")
-        style.configure("ResultTitle.TLabel", font=("Segoe UI", 12, "bold"), background="#ffffff")
+        style.configure("Title.TLabel", font=("Cambria", 18, "bold"), background="#f4f6f8")
+        style.configure("Label.TLabel", font=("Cambria", 11), background="#ffffff")
+        style.configure("Info.TLabel", font=("Cambria", 10), background="#ffffff")
+        style.configure("ResultTitle.TLabel", font=("Cambria", 12, "bold"), background="#ffffff")
 
         style.configure(
             "TCombobox",
@@ -315,7 +315,7 @@ class DesktopSearchApp(tk.Tk):
             padding=(6, 2, 6, 2),
             relief="flat",
             borderwidth=1,
-            font=("Segoe UI", 10)
+            font=("Cambria", 10)
         )
         style.map(
             "TCombobox",
@@ -332,10 +332,12 @@ class DesktopSearchApp(tk.Tk):
             bordercolor="#d1d5db",
             lightcolor="#ffffff",
             darkcolor="#ffffff",
-            padding=(6, 4, 6, 4),
+            # padding=(10, 8, 10, 8),
+            padding=(7, 5, 7, 5),
+
             relief="flat",
             borderwidth=1,
-            font=("Segoe UI", 11)
+            font=("Cambria", 11)
         )
         style.map(
             "Modern.TEntry",
@@ -345,38 +347,38 @@ class DesktopSearchApp(tk.Tk):
 
         style.configure(
             "Search.TButton",
-            foreground="#111827",
-            background="#ffffff",
-            bordercolor="#d1d5db",
-            lightcolor="#ffffff",
-            darkcolor="#ffffff",
+            foreground="#ffffff",
+            background="#10b981",
+            bordercolor="#10b981",
+            lightcolor="#10b981",
+            darkcolor="#10b981",
             relief="flat",
-            borderwidth=1,
-            padding=(18, 8),
-            font=("Segoe UI", 11, "bold")
+            borderwidth=0,
+            padding=(18, 7),
+            font=("Cambria", 10, "bold")
         )
         style.map(
             "Search.TButton",
-            background=[("active", "#f3f4f6"), ("pressed", "#e5e7eb")],
-            bordercolor=[("active", "#10b981"), ("pressed", "#10b981"), ("focus", "#10b981")]
+            background=[("active", "#059669"), ("pressed", "#047857")],
+            bordercolor=[("active", "#059669"), ("pressed", "#047857"), ("focus", "#10b981")]
         )
 
         style.configure(
             "Clear.TButton",
-            foreground="#111827",
-            background="#ffffff",
-            bordercolor="#d1d5db",
-            lightcolor="#ffffff",
-            darkcolor="#ffffff",
+            foreground="#ffffff",
+            background="#64748b",
+            bordercolor="#64748b",
+            lightcolor="#64748b",
+            darkcolor="#64748b",
             relief="flat",
-            borderwidth=1,
-            padding=(16, 8),
-            font=("Segoe UI", 10, "bold")
+            borderwidth=0,
+            padding=(16, 7),
+            font=("Cambria", 10, "bold")
         )
         style.map(
             "Clear.TButton",
-            background=[("active", "#f3f4f6"), ("pressed", "#e5e7eb")],
-            bordercolor=[("active", "#10b981"), ("pressed", "#10b981"), ("focus", "#10b981")]
+            background=[("active", "#475569"), ("pressed", "#334155")],
+            bordercolor=[("active", "#475569"), ("pressed", "#334155"), ("focus", "#64748b")]
         )
 
         style.configure(
@@ -386,7 +388,7 @@ class DesktopSearchApp(tk.Tk):
             relief="flat",
             borderwidth=0,
             padding=(14, 7),
-            font=("Segoe UI", 10, "bold")
+            font=("Cambria", 10, "bold")
         )
         style.map(
             "Simulation.TButton",
@@ -400,7 +402,7 @@ class DesktopSearchApp(tk.Tk):
             relief="flat",
             borderwidth=0,
             padding=(14, 7),
-            font=("Segoe UI", 10, "bold")
+            font=("Cambria", 10, "bold")
         )
         style.map(
             "Step.TButton",
@@ -414,7 +416,7 @@ class DesktopSearchApp(tk.Tk):
             relief="flat",
             borderwidth=0,
             padding=(14, 7),
-            font=("Segoe UI", 10, "bold")
+            font=("Cambria", 10, "bold")
         )
         style.map(
             "AutoPlay.TButton",
@@ -428,7 +430,7 @@ class DesktopSearchApp(tk.Tk):
             relief="flat",
             borderwidth=0,
             padding=(14, 7),
-            font=("Segoe UI", 10, "bold")
+            font=("Cambria", 10, "bold")
         )
         style.map(
             "Stop.TButton",
@@ -457,23 +459,32 @@ class DesktopSearchApp(tk.Tk):
         brand_box = tk.Frame(logo_container, bg="#0f172a")
         brand_box.pack(fill="x")
 
-        logo_path = "logo.png"
+        logo_path = "ptit_logo1.png"
         if os.path.exists(logo_path):
             try:
-                self.logo_img = tk.PhotoImage(file=logo_path)
+                # Load original image
+                original_logo = tk.PhotoImage(file=logo_path)
+
+                # Calculate subsample factor to make it about 64px high
+                # subsample only takes integers
+                factor = original_logo.height() // 64
+                if factor < 1:
+                    factor = 1
+
+                self.logo_img = original_logo.subsample(factor, factor)
                 logo_label = tk.Label(
                     brand_box,
                     image=self.logo_img,
                     bg="#0f172a"
                 )
-                logo_label.pack(pady=(0, 10))
+                logo_label.pack(anchor="w", pady=(0, 10))
             except Exception:
                 fallback = tk.Label(
                     brand_box,
-                    text="SS",
-                    fg="white",
-                    bg="#2563eb",
-                    font=("Segoe UI", 18, "bold"),
+                    text="PTIT",
+                    fg="#dc2626",
+                    bg="white",
+                    font=("Cambria", 18, "bold"),
                     width=4,
                     height=2
                 )
@@ -481,10 +492,10 @@ class DesktopSearchApp(tk.Tk):
         else:
             fallback = tk.Label(
                 brand_box,
-                text="SS",
-                fg="white",
-                bg="#2563eb",
-                font=("Segoe UI", 18, "bold"),
+                text="PTIT",
+                fg="#dc2626",
+                bg="white",
+                font=("Cambria", 18, "bold"),
                 width=4,
                 height=2
             )
@@ -495,7 +506,7 @@ class DesktopSearchApp(tk.Tk):
             text="String Search App",
             fg="white",
             bg="#0f172a",
-            font=("Segoe UI", 14, "bold"),
+            font=("Cambria", 14, "bold"),
             anchor="w"
         )
         app_name.pack(fill="x")
@@ -505,7 +516,7 @@ class DesktopSearchApp(tk.Tk):
             text="Desktop pattern matching tool",
             fg="#94a3b8",
             bg="#0f172a",
-            font=("Segoe UI", 9),
+            font=("Cambria", 9),
             anchor="w"
         )
         subtitle.pack(fill="x", pady=(4, 0))
@@ -529,7 +540,7 @@ class DesktopSearchApp(tk.Tk):
 
         create_nav_button("search", "Algorithm Visualization", "🔎")
         create_nav_button("performance", "Check Performance", "📊")
-        create_nav_button("file_search", "Search File", "📁")
+        # create_nav_button("file_search", "Search File", "📁")
 
         self._set_active_nav(self.active_menu)
 
@@ -541,11 +552,11 @@ class DesktopSearchApp(tk.Tk):
 
         hint = tk.Label(
             bottom_container,
-            text="Đặt file logo là 'logo.png'\ntrong cùng thư mục chương trình.",
+            text="  ",
             justify="left",
             fg="#94a3b8",
             bg="#0f172a",
-            font=("Segoe UI", 9)
+            font=("Cambria", 9)
         )
         hint.pack(fill="x")
 
@@ -612,11 +623,26 @@ class SearchSingleFrame(ttk.Frame):
         ttk.Label(left_card, text="Text", style="Label.TLabel").grid(row=0, column=0, sticky="w")
         
         # Text widget wrapper frame with emerald border
-        text_frame = tk.Frame(left_card, bg="#d1d5db", highlightthickness=0, relief="flat")
+        text_frame = tk.Frame(left_card, bg="#ffffff", highlightthickness=0, relief="flat")
         text_frame.grid(row=1, column=0, sticky="nsew", pady=(8, 12))
         text_frame.grid_columnconfigure(0, weight=1)
         text_frame.grid_rowconfigure(0, weight=1)
         
+        # self.text_widget = ScrolledText(
+        #     text_frame,
+        #     wrap="word",
+        #     font=("Menlo", 12),
+        #     height=18,
+        #     bg="#ffffff",
+        #     fg="#111827",
+        #     insertbackground="#10b981",
+        #     selectbackground="#10b981",
+        #     selectforeground="#ffffff",
+        #     relief="flat",
+        #     borderwidth=1,
+        #     # bordercolor="#d1d5db",
+        #     highlightthickness=0
+        # )
         self.text_widget = ScrolledText(
             text_frame,
             wrap="word",
@@ -627,11 +653,19 @@ class SearchSingleFrame(ttk.Frame):
             insertbackground="#10b981",
             selectbackground="#10b981",
             selectforeground="#ffffff",
+            
+            # Border & Color
             relief="flat",
-            borderwidth=0,
-            highlightthickness=0
+            highlightthickness=1,                
+            highlightbackground="#d1d5db",       
+            highlightcolor="#10b981",             
+            
+            padx=8, 
+            pady=5
         )
-        self.text_widget.grid(row=0, column=0, sticky="nsew", padx=2, pady=2)
+
+        self.text_widget.grid(row=0, column=0, sticky="nsew", padx=4, pady=4)
+        self.text_widget.grid(row=0, column=0, sticky="nsew", padx=4, pady=4)
         self.text_widget.insert(
             "1.0",
             "Ví dụ: Boyer Moore là một thuật toán tìm kiếm chuỗi. Boyer Moore có thể nhanh hơn Brute Force trong nhiều trường hợp."
@@ -642,7 +676,7 @@ class SearchSingleFrame(ttk.Frame):
         actions.grid_columnconfigure(1, weight=1)
 
         ttk.Label(actions, text="Pattern", style="Label.TLabel").grid(row=0, column=0, sticky="w", padx=(0, 8), pady=6)
-        pattern_entry = ttk.Entry(actions, textvariable=self.pattern_var, font=("Segoe UI", 11), style="Modern.TEntry")
+        pattern_entry = ttk.Entry(actions, textvariable=self.pattern_var, font=("Cambria", 11), style="Modern.TEntry")
         pattern_entry.grid(row=0, column=1, sticky="ew", pady=6)
 
         ttk.Label(actions, text="Algorithm", style="Label.TLabel").grid(row=1, column=0, sticky="w", padx=(0, 8), pady=6)
@@ -666,7 +700,7 @@ class SearchSingleFrame(ttk.Frame):
             borderwidth=0,
             highlightthickness=0,
             cursor="hand2",
-            font=("Segoe UI", 10),
+            font=("Cambria", 10),
             anchor="w"
         ).grid(row=2, column=0, columnspan=2, sticky="w", pady=6)
 
@@ -684,7 +718,7 @@ class SearchSingleFrame(ttk.Frame):
         #     activeforeground="white",
         #     bd=0,
         #     relief="flat",
-        #     font=("Segoe UI", 11, "bold"),
+        #     font=("Cambria", 11, "bold"),
         #     padx=18,
         #     pady=8,
         # ).pack(side="left")
@@ -699,7 +733,7 @@ class SearchSingleFrame(ttk.Frame):
         #     activeforeground="white",
         #     bd=0,
         #     relief="flat",
-        #     font=("Segoe UI", 10, "bold"),
+        #     font=("Cambria", 10, "bold"),
         #     padx=16,
         #     pady=8,
         # ).pack(side="left", padx=8)
@@ -744,7 +778,7 @@ class SearchSingleFrame(ttk.Frame):
             justify="left",
             bg="#ffffff",
             fg="#374151",
-            font=("Segoe UI", 10)
+            font=("Cambria", 10)
         )
         note.grid(row=5, column=0, sticky="ew", pady=(18, 0))
 
@@ -789,24 +823,42 @@ class SearchSingleFrame(ttk.Frame):
         ).pack(side="left", padx=6)
 
         # Simulation text widget wrapper frame with emerald border
-        sim_text_frame = tk.Frame(sim_card, bg="#d1d5db", highlightthickness=0, relief="flat")
+        sim_text_frame = tk.Frame(sim_card, bg="#ffffff", highlightthickness=0, relief="flat")
         sim_text_frame.grid(row=2, column=0, sticky="nsew")
         sim_text_frame.grid_columnconfigure(0, weight=1)
         sim_text_frame.grid_rowconfigure(0, weight=1)
         
         self.sim_text = ScrolledText(
             sim_text_frame,
+            # wrap="word",
+            # font=("Menlo", 12),
+            # height=12,
+            # bg="#ffffff",
+            # fg="#111827",
+            # insertbackground="#10b981",
+            # selectbackground="#10b981",
+            # selectforeground="#ffffff",
+            # relief="flat",
+            # borderwidth=0,
+            # highlightthickness=0
             wrap="word",
             font=("Menlo", 12),
-            height=12,
+            height=18,
             bg="#ffffff",
             fg="#111827",
             insertbackground="#10b981",
             selectbackground="#10b981",
             selectforeground="#ffffff",
+            
             relief="flat",
-            borderwidth=0,
-            highlightthickness=0
+            highlightthickness=1,                
+            highlightbackground="#d1d5db",       
+            highlightcolor="#10b981",             
+            
+            padx=8, 
+            pady=5, 
+            state="disabled"
+
         )
         self.sim_text.grid(row=0, column=0, sticky="nsew", padx=2, pady=2)
 
@@ -820,7 +872,7 @@ class SearchSingleFrame(ttk.Frame):
     #     container.grid(row=row, column=0, sticky="ew", pady=6)
     #     container.grid_columnconfigure(0, weight=1)
 
-    #     label = tk.Label(container, text=label_text, bg="#f9fafb", fg="#374151", font=("Segoe UI", 10, "bold"))
+    #     label = tk.Label(container, text=label_text, bg="#f9fafb", fg="#374151", font=("Cambria", 10, "bold"))
     #     label.grid(row=0, column=0, sticky="w", padx=10, pady=(8, 2))
 
     #     value = tk.Label(container, textvariable=value_var, bg="#f9fafb", fg="#111827", font=("Consolas", 11), justify="left", wraplength=300)
@@ -834,7 +886,7 @@ class SearchSingleFrame(ttk.Frame):
             relief="flat"
         )
         container.grid(row=row, column=0, sticky="ew", pady=6)
-        container.grid_columnconfigure(1, weight=1) # Cột 1 chứa nội dung
+        container.grid_columnconfigure(1, weight=1) 
 
         accent = tk.Frame(container, bg="#10b981", width=4)
         accent.grid(row=0, column=0, rowspan=2, sticky="ns")
@@ -844,7 +896,7 @@ class SearchSingleFrame(ttk.Frame):
             text=label_text.upper(), 
             bg="#ffffff", 
             fg="#64748b", # Màu Slate-500
-            font=("Segoe UI", 8, "bold")
+            font=("Cambria", 8, "bold")
         )
         label.grid(row=0, column=1, sticky="w", padx=12, pady=(10, 0))
 
@@ -852,8 +904,8 @@ class SearchSingleFrame(ttk.Frame):
             container, 
             textvariable=value_var, 
             bg="#ffffff", 
-            fg="#0f172a", # Màu tối đậm (Slate-900)
-            font=("Segoe UI Semibold", 11), 
+            fg="#0f172a", #
+            font=("Cambria Semibold", 11), 
             justify="left", 
             wraplength=350 
         )
@@ -864,6 +916,10 @@ class SearchSingleFrame(ttk.Frame):
         self.text_widget.tag_remove("sim_window", "1.0", tk.END)
         self.text_widget.tag_remove("sim_compare", "1.0", tk.END)
         self.text_widget.tag_remove("sim_match", "1.0", tk.END)
+
+        self.sim_text.config(state="normal")
+        self.sim_text.delete("1.0", tk.END)
+        self.sim_text.config(state="disabled")
 
     def upload_file(self):
         file_path = filedialog.askopenfilename(
@@ -889,6 +945,7 @@ class SearchSingleFrame(ttk.Frame):
             return
 
         try:
+            # self.text_widget.config(state="normal")
             content = self.reader.read(file_path)
             self.text_widget.delete("1.0", tk.END)
             self.text_widget.insert("1.0", content)
@@ -897,6 +954,7 @@ class SearchSingleFrame(ttk.Frame):
             self.result_vars["count"].set("0")
             self.result_vars["time"].set("0.000 ms")
             self.result_vars["comparisons"].set("0")
+            # self.text_widget.config(state="disabled")
         except Exception as e:
             messagebox.showerror("Lỗi", f"Không thể đọc file: {str(e)}")
 
@@ -1104,6 +1162,7 @@ class SearchSingleFrame(ttk.Frame):
             match_end = f"1.0 + {matched_until + 1} chars"
             self.text_widget.tag_add("sim_match", match_start, match_end)
 
+        self.sim_text.config(state="normal")
         self.sim_text.delete("1.0", tk.END)
         self.sim_text.insert(
             tk.END,
@@ -1112,7 +1171,7 @@ class SearchSingleFrame(ttk.Frame):
             f"Pattern: {pattern} \n"
             f"Mô tả: {step['message']}"
         )
-
+        self.sim_text.config(state="disabled")
     def next_step(self):
         if not self.simulation_steps:
             return
@@ -1198,7 +1257,7 @@ class SearchFileFrame(ttk.Frame):
             textvariable=self.file_name_var,
             bg="#ffffff",
             fg="#111827",
-            font=("Segoe UI", 10, "italic")
+            font=("Cambria", 10, "italic")
         ).grid(row=1, column=0, sticky="w", pady=(4, 10))
 
         file_text_frame = tk.Frame(left_card, bg="#d1d5db", highlightthickness=0, relief="flat")
@@ -1234,7 +1293,7 @@ class SearchFileFrame(ttk.Frame):
         search_box.grid_columnconfigure(1, weight=1)
 
         ttk.Label(search_box, text="Pattern", style="Label.TLabel").grid(row=0, column=0, sticky="w", padx=(0, 8), pady=6)
-        ttk.Entry(search_box, textvariable=self.pattern_var, font=("Segoe UI", 11), style="Modern.TEntry").grid(row=0, column=1, sticky="ew", pady=6)
+        ttk.Entry(search_box, textvariable=self.pattern_var, font=("Cambria", 11), style="Modern.TEntry").grid(row=0, column=1, sticky="ew", pady=6)
 
         ttk.Label(search_box, text="Algorithm", style="Label.TLabel").grid(row=1, column=0, sticky="w", padx=(0, 8), pady=6)
         ttk.Combobox(
@@ -1256,7 +1315,7 @@ class SearchFileFrame(ttk.Frame):
             borderwidth=0,
             highlightthickness=0,
             cursor="hand2",
-            font=("Segoe UI", 10),
+            font=("Cambria", 10),
             anchor="w"
         ).grid(row=2, column=0, columnspan=2, sticky="w", pady=6)
 
@@ -1286,7 +1345,7 @@ class SearchFileFrame(ttk.Frame):
             justify="left",
             bg="#ffffff",
             fg="#374151",
-            font=("Segoe UI", 10)
+            font=("Cambria", 10)
         )
         note.grid(row=5, column=0, sticky="ew", pady=(18, 0))
 
@@ -1297,7 +1356,7 @@ class SearchFileFrame(ttk.Frame):
     #     container.grid(row=row, column=0, sticky="ew", pady=6)
     #     container.grid_columnconfigure(0, weight=1)
 
-    #     label = tk.Label(container, text=label_text, bg="#f9fafb", fg="#374151", font=("Segoe UI", 10, "bold"))
+    #     label = tk.Label(container, text=label_text, bg="#f9fafb", fg="#374151", font=("Cambria", 10, "bold"))
     #     label.grid(row=0, column=0, sticky="w", padx=10, pady=(8, 2))
 
     #     value = tk.Label(container, textvariable=value_var, bg="#f9fafb", fg="#111827", font=("Consolas", 11), justify="left", wraplength=300)
@@ -1321,7 +1380,7 @@ class SearchFileFrame(ttk.Frame):
             text=label_text.upper(), 
             bg="#ffffff", 
             fg="#64748b", # Màu Slate-500
-            font=("Segoe UI", 8, "bold")
+            font=("Cambria", 8, "bold")
         )
         label.grid(row=0, column=1, sticky="w", padx=12, pady=(10, 0))
 
@@ -1330,7 +1389,7 @@ class SearchFileFrame(ttk.Frame):
             textvariable=value_var, 
             bg="#ffffff", 
             fg="#0f172a", 
-            font=("Segoe UI Semibold", 11), 
+            font=("Cambria Semibold", 11), 
             justify="left", 
             wraplength=350 
         )
@@ -1515,7 +1574,7 @@ class CheckPerformanceFrame(ttk.Frame):
             ttk.Label(form_card, text=label_text, style="Label.TLabel").grid(
                 row=row_idx, column=0, sticky="w", padx=(0, 8), pady=6
             )
-            ttk.Entry(form_card, textvariable=var, font=("Segoe UI", 10), style="Modern.TEntry").grid(
+            ttk.Entry(form_card, textvariable=var, font=("Cambria", 10), style="Modern.TEntry").grid(
                 row=row_idx, column=1, sticky="ew", pady=6
             )
 
@@ -1529,7 +1588,7 @@ class CheckPerformanceFrame(ttk.Frame):
                     textvariable=self.language_var,
                     values= list(TextPatternGenerator.LANGUAGE_CHARSETS.keys()),
                     state="readonly", 
-                    font=("Segoe UI", 10)
+                    font=("Cambria", 10)
                 )
                 lang_combo.grid(row=row_idx, column=1, sticky="ew", pady=6)
 
@@ -1547,7 +1606,7 @@ class CheckPerformanceFrame(ttk.Frame):
             borderwidth=0,
             highlightthickness=0,
             cursor="hand2",
-            font=("Segoe UI", 10),
+            font=("Cambria", 10),
             anchor="w"
         ).grid(row=row_idx, column=0, columnspan=2, sticky="w", pady=4)
         row_idx += 1
@@ -1564,7 +1623,7 @@ class CheckPerformanceFrame(ttk.Frame):
             borderwidth=0,
             highlightthickness=0,
             cursor="hand2",
-            font=("Segoe UI", 10),
+            font=("Cambria", 10),
             anchor="w"
         ).grid(row=row_idx, column=0, columnspan=2, sticky="w", pady=4)
         row_idx += 1
@@ -1581,7 +1640,7 @@ class CheckPerformanceFrame(ttk.Frame):
             borderwidth=0,
             highlightthickness=0,
             cursor="hand2",
-            font=("Segoe UI", 10),
+            font=("Cambria", 10),
             anchor="w"
         ).grid(row=row_idx, column=0, columnspan=2, sticky="w", pady=4)
         row_idx += 1
@@ -1598,7 +1657,7 @@ class CheckPerformanceFrame(ttk.Frame):
             borderwidth=0,
             highlightthickness=0,
             cursor="hand2",
-            font=("Segoe UI", 10),
+            font=("Cambria", 10),
             anchor="w"
         ).grid(row=row_idx, column=0, columnspan=2, sticky="w", pady=4)
         row_idx += 1
@@ -1631,7 +1690,7 @@ class CheckPerformanceFrame(ttk.Frame):
 
         columns = (
             "stt",
-            "language",
+            # "language",
             "text",
             "pattern",
             "text_length",
@@ -1648,7 +1707,7 @@ class CheckPerformanceFrame(ttk.Frame):
         )
 
         self.preview_tree.heading("stt", text="NO.")
-        self.preview_tree.heading("language", text="Language")
+        # self.preview_tree.heading("language", text="Language")
         self.preview_tree.heading("text", text="Text")
         self.preview_tree.heading("pattern", text="Pattern")
         self.preview_tree.heading("text_length", text="Text Length")
@@ -1656,7 +1715,7 @@ class CheckPerformanceFrame(ttk.Frame):
         self.preview_tree.heading("pattern_in_text", text="Pattern In Text")
 
         self.preview_tree.column("stt", width=50, anchor="center")
-        self.preview_tree.column("language", width=90, anchor="center")
+        # self.preview_tree.column("language", width=90, anchor="center")
         self.preview_tree.column("text", width=260, anchor="w")
         self.preview_tree.column("pattern", width=140, anchor="w")
         self.preview_tree.column("text_length", width=100, anchor="center")
@@ -1707,18 +1766,36 @@ class CheckPerformanceFrame(ttk.Frame):
         # )
         self.preview_detail = ScrolledText(
             preview_card,
+            # wrap="word",
+            # font=("Menlo", 12),
+            # height=5,
+            # bg="#ffffff",            
+            # fg="#111827",
+            # insertbackground="#10b981",
+            # selectbackground="#dcfce7", 
+            # selectforeground="#166534", 
+            # relief="flat",
+            # borderwidth=0,
+            # highlightthickness=2,
+            # highlightbackground="#d1d5db" 
             wrap="word",
             font=("Menlo", 12),
-            height=5,
-            bg="#ffffff",            
+            height=18,
+            bg="#ffffff",
             fg="#111827",
             insertbackground="#10b981",
-            selectbackground="#dcfce7", 
-            selectforeground="#166534", 
+            selectbackground="#10b981",
+            selectforeground="#ffffff",
+            
+            # Border & Color
             relief="flat",
-            borderwidth=0,
-            highlightthickness=2,
-            highlightbackground="#d1d5db" 
+            highlightthickness=1,                
+            highlightbackground="#d1d5db",       
+            highlightcolor="#10b981",             
+            
+            padx=8, 
+            pady=5, 
+            state="disabled"
         )
 
         self.preview_detail.grid(row=3, column=0, sticky="nsew", pady=(0, 10))
@@ -1777,7 +1854,7 @@ class CheckPerformanceFrame(ttk.Frame):
                     "end",
                     values=(
                         idx,
-                        item["language"],
+                        # item["language"],
                         self._short_text(item["text"], 50),
                         self._short_text(item["pattern"], 20),
                         item["text_length"],
@@ -1810,11 +1887,12 @@ class CheckPerformanceFrame(ttk.Frame):
 
         data = self.generated_data[stt]
 
+        self.preview_detail.config(state="normal")
         self.preview_detail.delete("1.0", tk.END)
         self.preview_detail.insert(
             tk.END,
             (
-                f"language        : {data['language']}\n"
+                # f"language        : {data['language']}\n"
                 f"text            : {data['text']}\n"
                 f"pattern         : {data['pattern']}\n"
                 f"text_length     : {data['text_length']}\n"
@@ -1822,6 +1900,8 @@ class CheckPerformanceFrame(ttk.Frame):
                 f"pattern_in_text : {data['pattern_in_text']}\n"
             )
         )
+        self.preview_detail.config(state="disabled")
+
 
     def check_performance(self):
         if not self.generated_data:
@@ -1894,7 +1974,7 @@ class CheckPerformanceFrame(ttk.Frame):
 
         columns = (
             "stt",
-            "language",
+            # "language",
             "text",
             "pattern",
             "text_length",
@@ -1918,7 +1998,7 @@ class CheckPerformanceFrame(ttk.Frame):
 
         headings = {
             "stt": "NO.",
-            "language": "Language",
+            # "language": "Language",
             "text": "Text",
             "pattern": "Pattern",
             "text_length": "Text Length",
@@ -1935,7 +2015,7 @@ class CheckPerformanceFrame(ttk.Frame):
             perf_tree.heading(col, text=title)
 
         perf_tree.column("stt", width=50, anchor="center")
-        perf_tree.column("language", width=80, anchor="center")
+        # perf_tree.column("language", width=80, anchor="center")
         perf_tree.column("text", width=220, anchor="w")
         perf_tree.column("pattern", width=120, anchor="w")
         perf_tree.column("text_length", width=90, anchor="center")
@@ -1976,19 +2056,37 @@ class CheckPerformanceFrame(ttk.Frame):
 
         detail_text = ScrolledText(
             left_card,
+            # wrap="word",
+            # font=("Menlo", 12),
+            # height=12,
+            # bg="#f9fafb",
+            # fg="#111827",
+            # insertbackground="#10b981",
+            # selectbackground="#10b981",
+            # selectforeground="#ffffff",
+            # relief="flat",
+            # # borderwidth=1, 
+            # borderwidth=0,
+            # highlightthickness=2,
+            # highlightbackground="#d1d5db" 
             wrap="word",
             font=("Menlo", 12),
-            height=12,
-            bg="#f9fafb",
+            height=18,
+            bg="#ffffff",
             fg="#111827",
             insertbackground="#10b981",
             selectbackground="#10b981",
             selectforeground="#ffffff",
+            
+            # Border & Color
             relief="flat",
-            # borderwidth=1, 
-            borderwidth=0,
-            highlightthickness=2,
-            highlightbackground="#d1d5db" 
+            highlightthickness=1,                
+            highlightbackground="#d1d5db",       
+            highlightcolor="#10b981",             
+            
+            padx=8, 
+            pady=5, 
+            state="disabled"
         )
         detail_text.grid(row=3, column=0, sticky="nsew")
 
@@ -2000,7 +2098,7 @@ class CheckPerformanceFrame(ttk.Frame):
                 "end",
                 values=(
                     idx,
-                    item["language"],
+                    # item["language"],
                     self._short_text(item["text"], 40),
                     self._short_text(item["pattern"], 20),
                     item["text_length"],
@@ -2028,7 +2126,7 @@ class CheckPerformanceFrame(ttk.Frame):
                 return
 
             data = self.performance_results[stt]
-
+            detail_text.config(state="normal")
             detail_text.delete("1.0", tk.END)
             detail_text.insert(
                 tk.END,
@@ -2048,6 +2146,7 @@ class CheckPerformanceFrame(ttk.Frame):
                     f"Boyer Moore comparisons : {data['boyermoore_comparisons']}\n"
                 )
             )
+            detail_text.config(state="disabled")
 
         perf_tree.bind("<<TreeviewSelect>>", on_perf_select)
 
@@ -2083,36 +2182,30 @@ class CheckPerformanceFrame(ttk.Frame):
         #     justify="left",
         #     bg="#ffffff",
         #     fg="#111827",
-        #     font=("Segoe UI", 11)
+        #     font=("Cambria", 11)
         # )
         # summary.grid(row=0, column=0, sticky="nw", pady=(0, 16))
         summary_container = tk.Frame(right_card, bg="#ffffff", padx=10, pady=10)
         summary_container.grid(row=0, column=0, sticky="nw", pady=(0, 16))
 
         def _add_metric_row(parent, row, label, bf_val, bm_val, is_header=False):
-            font_label = ("Segoe UI", 10, "bold") if is_header else ("Segoe UI", 10)
-            font_val = ("Consolas", 10, "bold") if not is_header else ("Segoe UI", 10, "bold")
+            font_label = ("Cambria", 10, "bold") if is_header else ("Cambria", 10)
+            font_val = ("Consolas", 10, "bold") if not is_header else ("Cambria", 10, "bold")
             bg = "#f8fafc" if is_header else "#ffffff"
             
-            # Label cột trái
             tk.Label(parent, text=label, bg=bg, fg="#64748b", font=font_label, width=20, anchor="w").grid(row=row, column=0, pady=2, padx=5)
-            # Giá trị BF
             tk.Label(parent, text=bf_val, bg=bg, fg="#ef4444" if not is_header else "#111827", font=font_val, width=15).grid(row=row, column=1, pady=2)
-            # Giá trị BM
             tk.Label(parent, text=bm_val, bg=bg, fg="#10b981" if not is_header else "#111827", font=font_val, width=15).grid(row=row, column=2, pady=2)
 
-        # Tiêu đề bảng
         _add_metric_row(summary_container, 0, "METRICS", "BRUTE FORCE", "BOYER MOORE", is_header=True)
 
-        # Các dòng dữ liệu
         _add_metric_row(summary_container, 1, "Total Time (ms)", f"{total_bf_time:.4f}", f"{total_bm_time:.4f}")
         _add_metric_row(summary_container, 2, "Average Time (ms)", f"{avg_bf_time:.4f}", f"{avg_bm_time:.4f}")
         _add_metric_row(summary_container, 3, "Total Comparisons", f"{total_bf_comp}", f"{total_bm_comp}")
         _add_metric_row(summary_container, 4, "Average Comparisons", f"{avg_bf_comp:.2f}", f"{avg_bm_comp:.2f}")
 
-        # Dòng tổng kết record
         tk.Label(summary_container, text=f"Total Records Processed: {len(self.performance_results)}", 
-                bg="#ffffff", fg="#111827", font=("Segoe UI", 11, "bold")).grid(row=5, column=0, columnspan=3, pady=(15, 0), sticky="w")
+                bg="#ffffff", fg="#111827", font=("Cambria", 11, "bold")).grid(row=5, column=0, columnspan=3, pady=(15, 0), sticky="w")
 
         # fig = Figure(figsize=(5.5, 5.0), dpi=100)
         # ax1 = fig.add_subplot(211)
@@ -2150,7 +2243,6 @@ class CheckPerformanceFrame(ttk.Frame):
         ax2.set_title("Average Comparisons", pad=15, fontsize=11, fontweight='bold', color='#1e293b')
         ax2.set_ylabel("count", color='#64748b')
 
-        # Tinh chỉnh giao diện cho cả 2 biểu đồ (Xóa viền, thêm grid)
         for ax in [ax1, ax2]:
             ax.set_facecolor('#ffffff')
             ax.spines['top'].set_visible(False)
@@ -2159,14 +2251,14 @@ class CheckPerformanceFrame(ttk.Frame):
             ax.spines['bottom'].set_color('#e2e8f0')
             ax.tick_params(axis='x', colors='#1e293b')
             ax.tick_params(axis='y', colors='#64748b')
-            ax.yaxis.grid(True, linestyle='--', alpha=0.5, color='#f1f5f9') # Grid ngang nhạt
-            ax.set_axisbelow(True) # Đẩy grid ra sau cột
+            ax.yaxis.grid(True, linestyle='--', alpha=0.5, color='#f1f5f9') 
+            ax.set_axisbelow(True) 
 
         fig.tight_layout()
 
         canvas = FigureCanvasTkAgg(fig, master=right_card)
         canvas.draw()
-        canvas.get_tk_widget().config(bg="#ffffff", highlightthickness=0) # Xóa viền ngoài cùng của canvas
+        canvas.get_tk_widget().config(bg="#ffffff", highlightthickness=0) 
         canvas.get_tk_widget().grid(row=1, column=0, sticky="nsew", pady=(10, 0))
 
 if __name__ == "__main__":
