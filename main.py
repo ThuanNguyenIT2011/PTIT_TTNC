@@ -12,6 +12,16 @@ from tkinter import ttk, filedialog, messagebox
 from tkinter.scrolledtext import ScrolledText
 import time
 import os
+import random
+
+try:
+    import pygame
+    pygame.mixer.init()
+    HAS_PYGAME = True
+    print("Pygame khởi tạo âm thanh thành công!")
+except Exception as e:
+    HAS_PYGAME = False
+    print(f"Không thể khởi tạo Pygame: {e}")
 
 from BruteForce import BruteForce
 from BoyerMoore import BoyerMoore, GoodSuffixHeuristic, BadCharacterHeuristic
@@ -542,6 +552,7 @@ class DesktopSearchApp(tk.Tk):
         create_nav_button("search", "Algorithm Visualization", "🔎")
         create_nav_button("performance", "Check Performance", "📊")
         # create_nav_button("file_search", "Search File", "📁")
+        create_nav_button("minigame", "Word Defense", "🎮")
 
         self._set_active_nav(self.active_menu)
 
@@ -571,6 +582,8 @@ class DesktopSearchApp(tk.Tk):
             self.current_frame = CheckPerformanceFrame(self.content_frame)
         elif name == "file_search":
             self.current_frame = SearchFileFrame(self.content_frame)
+        elif name == "minigame":
+            self.current_frame = MinigameFrame(self.content_frame)
 
         self.current_frame.grid(row=0, column=0, sticky="nsew", padx=18, pady=18)
 
@@ -2419,6 +2432,245 @@ class CheckPerformanceFrame(ttk.Frame):
             messagebox.showinfo("Thành công", f"Đã xuất báo cáo PDF ra file:\n{file_path}")
         except Exception as e:
             messagebox.showerror("Lỗi", f"Không thể lưu file PDF: {str(e)}")
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+SHOOT_SOUND_PATH = os.path.join(BASE_DIR, "shoot.wav")
+FAIL_SOUND_PATH = os.path.join(BASE_DIR, "fail.wav")
+BGM_SOUND_PATH = os.path.join(BASE_DIR, "bgm.mp3")
+
+class MinigameFrame(ttk.Frame):
+    def __init__(self, parent):
+        super().__init__(parent, style="Main.TFrame")
+        self.is_playing = False
+        self.score = 0
+        self.lives = 5
+        self.words_on_screen = []
+        self.game_loop_id = None
+        
+        self.charset = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+        self.pattern_var = tk.StringVar()
+        self.algorithm_var = tk.StringVar(value="Brute Force")
+        self.score_var = tk.StringVar(value="Score: 0")
+        self.lives_var = tk.StringVar(value="Lives: ❤️❤️❤️❤️❤️")
+
+        self._build_ui()
+
+    def _build_ui(self):
+        self.grid_columnconfigure(0, weight=1)
+        self.grid_rowconfigure(1, weight=1)
+
+        title = ttk.Label(self, text="Minigame: Word Defense 🚀", style="Title.TLabel")
+        title.grid(row=0, column=0, sticky="w", pady=(0, 12))
+
+        # Main game card
+        game_card = ttk.Frame(self, style="Card.TFrame", padding=16)
+        game_card.grid(row=1, column=0, sticky="nsew")
+        game_card.grid_columnconfigure(0, weight=1)
+        game_card.grid_rowconfigure(1, weight=1)
+
+        # Status bar (Top)
+        status_bar = tk.Frame(game_card, bg="#ffffff")
+        status_bar.grid(row=0, column=0, sticky="ew", pady=(0, 10))
+        status_bar.grid_columnconfigure(1, weight=1)
+
+        tk.Label(status_bar, textvariable=self.score_var, font=("Cambria", 14, "bold"), fg="#10b981", bg="#ffffff").pack(side="left", padx=(0, 20))
+        tk.Label(status_bar, textvariable=self.lives_var, font=("Cambria", 14, "bold"), fg="#ef4444", bg="#ffffff").pack(side="left")
+
+        create_modern_button(status_bar, text="End Game", command=self.end_game, style="Stop.TButton").pack(side="right")
+        create_modern_button(status_bar, text="Start Game", command=self.start_game, style="Simulation.TButton").pack(side="right", padx=(0, 8))
+
+        # Canvas (Giao diện chơi game nền tối)
+        self.canvas = tk.Canvas(game_card, bg="#0f172a", highlightthickness=2, highlightbackground="#334155")
+        self.canvas.grid(row=1, column=0, sticky="nsew")
+
+        # Controls (Bottom)
+        controls = tk.Frame(game_card, bg="#ffffff")
+        controls.grid(row=2, column=0, sticky="ew", pady=(15, 0))
+        controls.grid_columnconfigure(3, weight=1)
+
+        ttk.Label(controls, text="Algorithm:", style="Label.TLabel").grid(row=0, column=0, padx=(0, 10))
+        ttk.Combobox(
+            controls, textvariable=self.algorithm_var, state="readonly", 
+            values=["Brute Force", "Boyer Moore"], width=15
+        ).grid(row=0, column=1, padx=(0, 20))
+
+        ttk.Label(controls, text="Shoot Pattern:", style="Label.TLabel").grid(row=0, column=2, padx=(0, 10))
+        entry = ttk.Entry(controls, textvariable=self.pattern_var, font=("Consolas", 14), width=20, style="Modern.TEntry")
+        entry.grid(row=0, column=3, sticky="ew", padx=(0, 15))
+        entry.bind("<Return>", lambda e: self.shoot())
+
+        create_modern_button(controls, text="Bắn! (Enter)", command=self.shoot, style="AutoPlay.TButton").grid(row=0, column=4)
+
+    def start_game(self):
+        if self.is_playing:
+            return
+            
+        self.is_playing = True
+        self.score = 0
+        self.lives = 5
+        self.update_status()
+        
+        self.canvas.delete("all")
+        self.words_on_screen.clear()
+        self.canvas.focus_set()
+        
+        if self.game_loop_id:
+            self.after_cancel(self.game_loop_id)
+            
+        # Phát nhạc nền
+        if HAS_PYGAME:
+            if os.path.exists(BGM_SOUND_PATH):
+                try:
+                    pygame.mixer.music.load(BGM_SOUND_PATH)
+                    pygame.mixer.music.play(-1) # -1 để lặp vô tận
+                except Exception as e:
+                    print(f"Lỗi khi phát bgm.mp3: {e}")
+            else:
+                print(f"Không tìm thấy file: {BGM_SOUND_PATH}")
+
+        self.game_loop()
+
+    def update_status(self):
+        self.score_var.set(f"Score: {self.score}")
+        self.lives_var.set(f"Lives: {'❤️' * self.lives}")
+
+    def game_over(self):
+        self.is_playing = False
+        
+        if HAS_PYGAME:
+            pygame.mixer.music.stop()
+            
+        self.canvas.create_text(
+            self.canvas.winfo_width() / 2, 
+            self.canvas.winfo_height() / 2, 
+            text="GAME OVER", 
+            fill="#ef4444", 
+            font=("Cambria", 36, "bold")
+        )
+
+    def end_game(self):
+        if not self.is_playing:
+            return
+            
+        self.is_playing = False
+        if self.game_loop_id:
+            self.after_cancel(self.game_loop_id)
+            self.game_loop_id = None
+            
+        if HAS_PYGAME:
+            pygame.mixer.music.stop()
+            
+        self.canvas.create_text(
+            self.canvas.winfo_width() / 2, 
+            self.canvas.winfo_height() / 2, 
+            text="GAME ENDED", 
+            fill="#f97316", 
+            font=("Cambria", 36, "bold")
+        )
+
+    def destroy(self):
+        # Dọn dẹp tài nguyên và tắt nhạc khi chuyển sang Tab khác
+        self.is_playing = False
+        if self.game_loop_id:
+            self.after_cancel(self.game_loop_id)
+        if HAS_PYGAME:
+            pygame.mixer.music.stop()
+        super().destroy()
+
+    def spawn_word(self):
+        width = self.canvas.winfo_width()
+        if width < 100: width = 800
+        
+        word_length = random.randint(5, 12) # Độ dài ngẫu nhiên từ 5 đến 12 ký tự
+        word = "".join(random.choice(self.charset) for _ in range(word_length))
+        x = random.randint(20, width - 150)
+        y = 0
+        speed = random.uniform(1.5, 3.5)
+        
+        item_id = self.canvas.create_text(x, y, text=word, fill="#38bdf8", font=("Consolas", 16, "bold"), anchor="nw")
+        self.words_on_screen.append({"id": item_id, "text": word, "speed": speed})
+
+    def game_loop(self):
+        if not self.is_playing:
+            return
+
+        # Tỷ lệ xuất hiện từ mới (3% mỗi vòng lặp 50ms)
+        if random.random() < 0.03: 
+            self.spawn_word()
+
+        height = self.canvas.winfo_height()
+        
+        for w in self.words_on_screen[:]:
+            self.canvas.move(w["id"], 0, w["speed"])
+            coords = self.canvas.coords(w["id"])
+            
+            if coords and coords[1] > height:
+                self.canvas.delete(w["id"])
+                self.words_on_screen.remove(w)
+                self.lives -= 1
+                self.update_status()
+                
+                # Phát âm thanh khi mất mạng
+                if HAS_PYGAME:
+                    if os.path.exists(FAIL_SOUND_PATH):
+                        try:
+                            pygame.mixer.Sound(FAIL_SOUND_PATH).play()
+                        except Exception as e:
+                            print(f"Lỗi khi phát fail.wav: {e}")
+                    else:
+                        print(f"Không tìm thấy file: {FAIL_SOUND_PATH}")
+                        self.winfo_toplevel().bell()
+                else:
+                    self.winfo_toplevel().bell() # Fallback tiếng beep hệ thống
+
+                if self.lives <= 0:
+                    self.game_over()
+                    return
+
+        self.game_loop_id = self.after(50, self.game_loop)
+
+    def shoot(self):
+        if not self.is_playing: return
+        
+        pattern = self.pattern_var.get().upper().strip()
+        self.pattern_var.set("") # Reset ô nhập liệu
+        if not pattern: return
+        
+        algo = self.algorithm_var.get()
+        
+        for w in self.words_on_screen[:]:
+            text = w["text"]
+            # ỨNG DỤNG THUẬT TOÁN STRING MATCHING VÀO GAME
+            if algo == "Brute Force":
+                res = BruteForce(text, pattern, case_sensitive=False).search()
+            else:
+                BoyerMoore.initialize(text, pattern, case_sensitive=False)
+                BoyerMoore.mainloop()
+                res = BoyerMoore.RESULT
+                
+            if res.positions:
+                # Nếu tìm thấy pattern trong từ đang rơi -> Nổ!
+                coords = self.canvas.coords(w["id"])
+                self.canvas.delete(w["id"])
+                self.words_on_screen.remove(w)
+                self.score += 10 * len(pattern)
+                self.update_status()
+                
+                # Phát âm thanh khi bắn trúng
+                if HAS_PYGAME:
+                    if os.path.exists(SHOOT_SOUND_PATH):
+                        try:
+                            pygame.mixer.Sound(SHOOT_SOUND_PATH).play()
+                        except Exception as e:
+                            print(f"Lỗi khi phát shoot.wav: {e}")
+                    else:
+                        print(f"Không tìm thấy file: {SHOOT_SOUND_PATH}")
+
+                # Hiệu ứng nổ 💥
+                if coords:
+                    boom = self.canvas.create_text(coords[0], coords[1], text="💥", font=("Arial", 24))
+                    self.after(300, lambda b=boom: self.canvas.delete(b))
 
 if __name__ == "__main__":
     app = DesktopSearchApp()
