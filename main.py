@@ -12,7 +12,16 @@ from tkinter import ttk, filedialog, messagebox
 from tkinter.scrolledtext import ScrolledText
 import time
 import os
+import sys
 import random
+
+def get_resource_path(relative_path):
+    """ Lấy đường dẫn tuyệt đối, hỗ trợ cả khi chạy code bình thường và khi đóng gói bằng PyInstaller """
+    try:
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(os.path.dirname(__file__))
+    return os.path.join(base_path, relative_path)
 
 try:
     import pygame
@@ -470,7 +479,7 @@ class DesktopSearchApp(tk.Tk):
         brand_box = tk.Frame(logo_container, bg="#0f172a")
         brand_box.pack(fill="x")
 
-        logo_path = "ptit_logo1.png"
+        logo_path = get_resource_path("ptit_logo1.png")
         if os.path.exists(logo_path):
             try:
                 # Load original image
@@ -2433,10 +2442,9 @@ class CheckPerformanceFrame(ttk.Frame):
         except Exception as e:
             messagebox.showerror("Lỗi", f"Không thể lưu file PDF: {str(e)}")
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-SHOOT_SOUND_PATH = os.path.join(BASE_DIR, "shoot.wav")
-FAIL_SOUND_PATH = os.path.join(BASE_DIR, "fail.wav")
-BGM_SOUND_PATH = os.path.join(BASE_DIR, "bgm.mp3")
+SHOOT_SOUND_PATH = get_resource_path("shoot.wav")
+FAIL_SOUND_PATH = get_resource_path("fail.wav")
+BGM_SOUND_PATH = get_resource_path("bgm.mp3")
 
 class MinigameFrame(ttk.Frame):
     def __init__(self, parent):
@@ -2453,6 +2461,19 @@ class MinigameFrame(ttk.Frame):
         self.algorithm_var = tk.StringVar(value="Brute Force")
         self.score_var = tk.StringVar(value="Score: 0")
         self.lives_var = tk.StringVar(value="Lives: ❤️❤️❤️❤️❤️")
+        
+        # Load âm thanh sẵn 1 lần vào bộ nhớ để tránh lag và lỗi
+        self.shoot_sound = None
+        self.fail_sound = None
+        
+        if HAS_PYGAME:
+            if os.path.exists(SHOOT_SOUND_PATH):
+                try: self.shoot_sound = pygame.mixer.Sound(SHOOT_SOUND_PATH)
+                except Exception as e: print(f"Lỗi load shoot.wav: {e}")
+                    
+            if os.path.exists(FAIL_SOUND_PATH):
+                try: self.fail_sound = pygame.mixer.Sound(FAIL_SOUND_PATH)
+                except Exception as e: print(f"Lỗi load fail.wav: {e}")
 
         self._build_ui()
 
@@ -2612,15 +2633,8 @@ class MinigameFrame(ttk.Frame):
                 self.update_status()
                 
                 # Phát âm thanh khi mất mạng
-                if HAS_PYGAME:
-                    if os.path.exists(FAIL_SOUND_PATH):
-                        try:
-                            pygame.mixer.Sound(FAIL_SOUND_PATH).play()
-                        except Exception as e:
-                            print(f"Lỗi khi phát fail.wav: {e}")
-                    else:
-                        print(f"Không tìm thấy file: {FAIL_SOUND_PATH}")
-                        self.winfo_toplevel().bell()
+                if self.fail_sound:
+                    self.fail_sound.play()
                 else:
                     self.winfo_toplevel().bell() # Fallback tiếng beep hệ thống
 
@@ -2658,14 +2672,8 @@ class MinigameFrame(ttk.Frame):
                 self.update_status()
                 
                 # Phát âm thanh khi bắn trúng
-                if HAS_PYGAME:
-                    if os.path.exists(SHOOT_SOUND_PATH):
-                        try:
-                            pygame.mixer.Sound(SHOOT_SOUND_PATH).play()
-                        except Exception as e:
-                            print(f"Lỗi khi phát shoot.wav: {e}")
-                    else:
-                        print(f"Không tìm thấy file: {SHOOT_SOUND_PATH}")
+                if self.shoot_sound:
+                    self.shoot_sound.play()
 
                 # Hiệu ứng nổ 💥
                 if coords:

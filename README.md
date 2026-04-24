@@ -19,6 +19,11 @@
    - Ứng dụng thuật toán để tìm kiếm từ khoá trong các tệp tài liệu thực tế.
    - Hỗ trợ đọc đa dạng các định dạng: `.txt`, `.pdf`, `.docx`, `.xlsx`, `.csv` và các file mã nguồn (`.py`, `.cpp`, `.js`,...).
 
+4. **Minigame: Word Defense 🎮**
+   - Ứng dụng thực tế hai thuật toán vào một trò chơi thời gian thực (Real-time).
+   - Cho phép người chơi gõ từ khóa (pattern) để so sánh chuỗi và "bắn" phá các từ vựng đang rơi xuống.
+   - Tích hợp hiệu ứng âm thanh cực kỳ sống động (nhạc nền, âm thanh bắn trúng, mất mạng) bằng thư viện `pygame`.
+
 ## 💻 Yêu cầu hệ thống
 
 - **Python**: Phiên bản >= 3.8
