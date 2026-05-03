@@ -497,7 +497,7 @@ class DesktopSearchApp(tk.Tk):
                     image=self.logo_img,
                     bg="#0f172a"
                 )
-                logo_label.pack(anchor="w", pady=(0, 10))
+                logo_label.pack(anchor="center", pady=(0, 10))
             except Exception:
                 fallback = tk.Label(
                     brand_box,
@@ -508,7 +508,7 @@ class DesktopSearchApp(tk.Tk):
                     width=4,
                     height=2
                 )
-                fallback.pack(anchor="w", pady=(0, 10))
+                fallback.pack(anchor="center", pady=(0, 10))
         else:
             fallback = tk.Label(
                 brand_box,
@@ -519,7 +519,7 @@ class DesktopSearchApp(tk.Tk):
                 width=4,
                 height=2
             )
-            fallback.pack(anchor="w", pady=(0, 10))
+            fallback.pack(anchor="center", pady=(0, 10))
 
         app_name = tk.Label(
             logo_container,
@@ -527,7 +527,7 @@ class DesktopSearchApp(tk.Tk):
             fg="white",
             bg="#0f172a",
             font=("Cambria", 14, "bold"),
-            anchor="w"
+            anchor="center"
         )
         app_name.pack(fill="x")
 
@@ -537,7 +537,7 @@ class DesktopSearchApp(tk.Tk):
             fg="#94a3b8",
             bg="#0f172a",
             font=("Cambria", 9),
-            anchor="w"
+            anchor="center"
         )
         subtitle.pack(fill="x", pady=(4, 0))
 
