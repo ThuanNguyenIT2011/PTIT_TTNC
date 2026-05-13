@@ -920,7 +920,7 @@ class SearchSingleFrame(ttk.Frame):
             text=label_text.upper(), 
             bg="#ffffff", 
             fg="#64748b", # Màu Slate-500
-            font=("Cambria", 8, "bold")
+            font=("Cambria", 9, "bold")
         )
         label.grid(row=0, column=1, sticky="w", padx=12, pady=(10, 0))
 
@@ -929,7 +929,7 @@ class SearchSingleFrame(ttk.Frame):
             textvariable=value_var, 
             bg="#ffffff", 
             fg="#0f172a", #
-            font=("Cambria Semibold", 11), 
+            font=("Cambria", 11), 
             justify="left", 
             wraplength=350 
         )
