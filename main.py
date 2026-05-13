@@ -714,7 +714,7 @@ class SearchSingleFrame(ttk.Frame):
 
         tk.Checkbutton(
             actions,
-            text="Case sensitive",
+            text="Case Sensitive",
             variable=self.case_sensitive_var,
             bg="#ffffff",
             fg="#374151",
@@ -724,7 +724,7 @@ class SearchSingleFrame(ttk.Frame):
             borderwidth=0,
             highlightthickness=0,
             cursor="hand2",
-            font=("Cambria", 10),
+            font=("Cambria", 10, "italic"),
             anchor="w"
         ).grid(row=2, column=0, columnspan=2, sticky="w", pady=6)
 
@@ -1329,7 +1329,7 @@ class SearchFileFrame(ttk.Frame):
 
         tk.Checkbutton(
             search_box,
-            text="Case sensitive",
+            text="Case Sensitive",
             variable=self.case_sensitive_var,
             bg="#ffffff",
             fg="#374151",
@@ -1339,7 +1339,7 @@ class SearchFileFrame(ttk.Frame):
             borderwidth=0,
             highlightthickness=0,
             cursor="hand2",
-            font=("Cambria", 10),
+            font=("Cambria", 10, "italic"),
             anchor="w"
         ).grid(row=2, column=0, columnspan=2, sticky="w", pady=6)
 
@@ -1630,7 +1630,7 @@ class CheckPerformanceFrame(ttk.Frame):
             borderwidth=0,
             highlightthickness=0,
             cursor="hand2",
-            font=("Cambria", 10),
+            font=("Cambria", 10, "italic"),
             anchor="w"
         ).grid(row=row_idx, column=0, columnspan=2, sticky="w", pady=4)
         row_idx += 1
@@ -1647,7 +1647,7 @@ class CheckPerformanceFrame(ttk.Frame):
             borderwidth=0,
             highlightthickness=0,
             cursor="hand2",
-            font=("Cambria", 10),
+            font=("Cambria", 10, "italic"),
             anchor="w"
         ).grid(row=row_idx, column=0, columnspan=2, sticky="w", pady=4)
         row_idx += 1
@@ -1664,7 +1664,7 @@ class CheckPerformanceFrame(ttk.Frame):
             borderwidth=0,
             highlightthickness=0,
             cursor="hand2",
-            font=("Cambria", 10),
+            font=("Cambria", 10, "italic"),
             anchor="w"
         ).grid(row=row_idx, column=0, columnspan=2, sticky="w", pady=4)
         row_idx += 1
@@ -1681,7 +1681,7 @@ class CheckPerformanceFrame(ttk.Frame):
             borderwidth=0,
             highlightthickness=0,
             cursor="hand2",
-            font=("Cambria", 10),
+            font=("Cambria", 10, "italic"),
             anchor="w"
         ).grid(row=row_idx, column=0, columnspan=2, sticky="w", pady=4)
         row_idx += 1
