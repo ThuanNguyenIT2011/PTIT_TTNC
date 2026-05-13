@@ -533,10 +533,10 @@ class DesktopSearchApp(tk.Tk):
 
         subtitle = tk.Label(
             logo_container,
-            text="Desktop pattern matching tool",
+            text="Desktop Pattern Matching Tool",
             fg="#94a3b8",
             bg="#0f172a",
-            font=("Cambria", 9),
+            font=("Cambria", 9, "italic"),
             anchor="center"
         )
         subtitle.pack(fill="x", pady=(4, 0))
