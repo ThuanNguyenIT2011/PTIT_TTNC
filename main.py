@@ -670,7 +670,7 @@ class SearchSingleFrame(ttk.Frame):
         self.text_widget = ScrolledText(
             text_frame,
             wrap="word",
-            font=("Menlo", 12),
+            font=("Cambria", 12),
             height=18,
             bg="#ffffff",
             fg="#111827",
@@ -866,7 +866,7 @@ class SearchSingleFrame(ttk.Frame):
             # borderwidth=0,
             # highlightthickness=0
             wrap="word",
-            font=("Menlo", 12),
+            font=("Cambria", 12),
             height=18,
             bg="#ffffff",
             fg="#111827",
@@ -1292,7 +1292,7 @@ class SearchFileFrame(ttk.Frame):
         self.file_text_widget = ScrolledText(
             file_text_frame,
             wrap="word",
-            font=("Menlo", 12),
+            font=("Cambria", 12),
             height=10, 
             bg="#ffffff",
             fg="#111827",
@@ -1803,7 +1803,7 @@ class CheckPerformanceFrame(ttk.Frame):
             # highlightthickness=2,
             # highlightbackground="#d1d5db" 
             wrap="word",
-            font=("Menlo", 12),
+            font=("Cambria", 12),
             height=18,
             bg="#ffffff",
             fg="#111827",
@@ -2094,7 +2094,7 @@ class CheckPerformanceFrame(ttk.Frame):
             # highlightthickness=2,
             # highlightbackground="#d1d5db" 
             wrap="word",
-            font=("Menlo", 12),
+            font=("Cambria", 12),
             height=18,
             bg="#ffffff",
             fg="#111827",
