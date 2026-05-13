@@ -178,7 +178,7 @@ class BoyerMoore:
                         )
                     })
 
-                    i = original_i + shift
+                    i += shift
                     break
 
                 i -= 1
@@ -203,7 +203,7 @@ class BoyerMoore:
                     "message": f"Match hoàn toàn, dịch pattern sang phải {shift} vị trí."
                 })
 
-                i = found_pos + cls.PATLEN - 1 + shift
+                i = found_pos + shift
 
         return steps
 
