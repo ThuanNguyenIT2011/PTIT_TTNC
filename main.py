@@ -1604,7 +1604,7 @@ class CheckPerformanceFrame(ttk.Frame):
 
             if row_idx == 2:
                 row_idx += 1
-                ttk.Label(form_card, text="language", style="Label.TLabel").grid(
+                ttk.Label(form_card, text="Language", style="Label.TLabel").grid(
                     row=row_idx, column=0, sticky="w", padx=(0, 8), pady=6
                 )
                 lang_combo = ttk.Combobox(
