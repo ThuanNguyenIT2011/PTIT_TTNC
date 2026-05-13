@@ -37,8 +37,11 @@ from BoyerMoore import BoyerMoore, GoodSuffixHeuristic, BadCharacterHeuristic
 from FileTextReader import DocumentReader
 from TextPatternGenerator import TextPatternGenerator
 
+import matplotlib.pyplot as plt
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+
+plt.rcParams['font.family'] = 'Cambria'
 
 # from mainv3 import SearchFileFrame
 
@@ -2214,7 +2217,7 @@ class CheckPerformanceFrame(ttk.Frame):
 
         def _add_metric_row(parent, row, label, bf_val, bm_val, is_header=False):
             font_label = ("Cambria", 10, "bold") if is_header else ("Cambria", 10)
-            font_val = ("Consolas", 10, "bold") if not is_header else ("Cambria", 10, "bold")
+            font_val = ("Cambria", 10) if not is_header else ("Cambria", 10, "bold")
             bg = "#f8fafc" if is_header else "#ffffff"
             
             tk.Label(parent, text=label, bg=bg, fg="#64748b", font=font_label, width=20, anchor="w").grid(row=row, column=0, pady=2, padx=5)
@@ -2283,13 +2286,11 @@ class CheckPerformanceFrame(ttk.Frame):
         ax1 = fig.add_subplot(211)
         bars1 = ax1.bar(["Brute Force", "Boyer Moore"], [avg_bf_time, avg_bm_time], color=colors, width=0.6)
         ax1.set_title("Average Processing Time (ms)", pad=15, fontsize=11, fontweight='bold', color='#1e293b')
-        ax1.set_ylabel("ms", color='#64748b')
 
         # --- Biểu đồ 2: Comparison Efficiency ---
         ax2 = fig.add_subplot(212)
         bars2 = ax2.bar(["Brute Force", "Boyer Moore"], [avg_bf_comp, avg_bm_comp], color=colors, width=0.6)
         ax2.set_title("Average Comparisons", pad=15, fontsize=11, fontweight='bold', color='#1e293b')
-        ax2.set_ylabel("count", color='#64748b')
 
         for ax in [ax1, ax2]:
             ax.set_facecolor('#ffffff')
