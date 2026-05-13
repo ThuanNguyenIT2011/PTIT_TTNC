@@ -143,6 +143,7 @@ class DesktopSearchApp(tk.Tk):
     def __init__(self):
         super().__init__()
         self.title("String Search Desktop App")
+        self.iconbitmap("resource/image/logo.ico")
         self.geometry("1100x700")
         self.minsize(980, 620)
         self.configure(bg="#f4f6f8")
@@ -479,7 +480,7 @@ class DesktopSearchApp(tk.Tk):
         brand_box = tk.Frame(logo_container, bg="#0f172a")
         brand_box.pack(fill="x")
 
-        logo_path = get_resource_path("ptit_logo1.png")
+        logo_path = get_resource_path("resource/image/symbol.png")
         if os.path.exists(logo_path):
             try:
                 # Load original image
@@ -2442,9 +2443,9 @@ class CheckPerformanceFrame(ttk.Frame):
         except Exception as e:
             messagebox.showerror("Lỗi", f"Không thể lưu file PDF: {str(e)}")
 
-SHOOT_SOUND_PATH = get_resource_path("shoot.wav")
-FAIL_SOUND_PATH = get_resource_path("fail.wav")
-BGM_SOUND_PATH = get_resource_path("bgm.mp3")
+SHOOT_SOUND_PATH = get_resource_path("resource/audio/shoot.wav")
+FAIL_SOUND_PATH = get_resource_path("resource/audio/fail.wav")
+BGM_SOUND_PATH = get_resource_path("resource/audio/bgm.mp3")
 
 class MinigameFrame(ttk.Frame):
     def __init__(self, parent):
