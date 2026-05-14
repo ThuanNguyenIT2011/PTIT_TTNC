@@ -1744,8 +1744,8 @@ class CheckPerformanceFrame(ttk.Frame):
 
         self.preview_tree.column("stt", width=50, anchor="center")
         # self.preview_tree.column("language", width=90, anchor="center")
-        self.preview_tree.column("text", width=260, anchor="w")
-        self.preview_tree.column("pattern", width=140, anchor="w")
+        self.preview_tree.column("text", width=200, anchor="w")
+        self.preview_tree.column("pattern", width=200, anchor="w")
         self.preview_tree.column("text_length", width=100, anchor="center")
         self.preview_tree.column("pattern_length", width=110, anchor="center")
         self.preview_tree.column("pattern_in_text", width=120, anchor="center")
@@ -1999,8 +1999,8 @@ class CheckPerformanceFrame(ttk.Frame):
             "pattern",
             "text_length",
             "pattern_length",
-            "bf_count",
-            "bm_count",
+            # "bf_count",
+            # "bm_count",
             "bf_time",
             "bm_time",
             "bf_comp",
@@ -2023,8 +2023,8 @@ class CheckPerformanceFrame(ttk.Frame):
             "pattern": "Pattern",
             "text_length": "Text Length",
             "pattern_length": "Pattern Length",
-            "bf_count": "BF Count",
-            "bm_count": "BM Count",
+            # "bf_count": "BF Count",
+            # "bm_count": "BM Count",
             "bf_time": "BF Time (ms)",
             "bm_time": "BM Time (ms)",
             "bf_comp": "BF Comparisons",
@@ -2036,12 +2036,12 @@ class CheckPerformanceFrame(ttk.Frame):
 
         perf_tree.column("stt", width=50, anchor="center", stretch=False)
         # perf_tree.column("language", width=80, anchor="center", stretch=False)
-        perf_tree.column("text", width=220, anchor="w", stretch=False)
-        perf_tree.column("pattern", width=120, anchor="w", stretch=False)
+        perf_tree.column("text", width=170, anchor="w", stretch=False)
+        perf_tree.column("pattern", width=170, anchor="w", stretch=False)
         perf_tree.column("text_length", width=90, anchor="center", stretch=False)
         perf_tree.column("pattern_length", width=100, anchor="center", stretch=False)
-        perf_tree.column("bf_count", width=80, anchor="center", stretch=False)
-        perf_tree.column("bm_count", width=80, anchor="center", stretch=False)
+        # perf_tree.column("bf_count", width=80, anchor="center", stretch=False)
+        # perf_tree.column("bm_count", width=80, anchor="center", stretch=False)
         perf_tree.column("bf_time", width=110, anchor="center", stretch=False)
         perf_tree.column("bm_time", width=110, anchor="center", stretch=False)
         perf_tree.column("bf_comp", width=120, anchor="center", stretch=False)
@@ -2123,8 +2123,8 @@ class CheckPerformanceFrame(ttk.Frame):
                     self._short_text(item["pattern"], 20),
                     item["text_length"],
                     item["pattern_length"],
-                    item["bruteforce_count"],
-                    item["boyermoore_count"],
+                    # item["bruteforce_count"],
+                    # item["boyermoore_count"],
                     f"{item['bruteforce_time_ms']:.6f}",
                     f"{item['boyermoore_time_ms']:.6f}",
                     item["bruteforce_comparisons"],

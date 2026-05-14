@@ -209,8 +209,8 @@ class BoyerMoore:
 
 
 if __name__ == "__main__":
-    TEXT = "Which-finally-Halts.--at-that-THAT"
-    PATTERN = "AT-THAT"
+    TEXT = "TPSIA"
+    PATTERN = "P"
 
     print("=== Case sensitive = False ===")
     BoyerMoore.initialize(TEXT, PATTERN, case_sensitive=False)
