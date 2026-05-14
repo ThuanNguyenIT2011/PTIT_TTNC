@@ -45,7 +45,7 @@ class GoodSuffixHeuristic:
                         break
                 else:
                     if k < 0 or (k >= 0 and pattern[k - 1] != preceding_char):
-                        cls.DATA_TABLE[j] = {"shift": cls.PATLEN - k}
+                        cls.DATA_TABLE[j] = {"shift": cls.PATLEN - k if suffix_length > 0 else 1}
                         break
                 k -= 1
 
