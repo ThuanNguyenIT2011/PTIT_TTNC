@@ -4,14 +4,14 @@ from typing import List, Dict, Optional
 
 class TextPatternGenerator:
     LANGUAGE_CHARSETS = {
-        "en": "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ ",
-        "vi": "aăâbcdđeêghiklmnoôơpqrstuưvxyAĂÂBCDĐEÊGHIKLMNOÔƠPQRSTUƯVXY ",
-        "fr": "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZàâçéèêëîïôùûüÿæœÀÂÇÉÈÊËÎÏÔÙÛÜŸÆŒ ",
-        "de": "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZäöüßÄÖÜ ",
-        "es": "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZáéíóúñüÁÉÍÓÚÑÜ ",
-        "jp": "あいうえおかきくけこさしすせそたちつてとなにぬねのまみむめもやゆよらりるれろわをんアイウエオカキクケコサシスセソタチツテトナニヌネノマミムメモヤユヨラリルレロワヲン ",
-        "kr": "가나다라마바사아자차카타파하거너더러머버서어저처커터퍼허 ",
-        "cn": "的一是在不了有人这中大为上个国我以要他时来用们生到作地于出就分对成会可主发年动同工也行 ",
+        "English": "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ ",
+        "Vietnamese": "aăâbcdđeêghiklmnoôơpqrstuưvxyAĂÂBCDĐEÊGHIKLMNOÔƠPQRSTUƯVXY ",
+        "French": "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZàâçéèêëîïôùûüÿæœÀÂÇÉÈÊËÎÏÔÙÛÜŸÆŒ ",
+        "German": "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZäöüßÄÖÜ ",
+        "Spanish": "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZáéíóúñüÁÉÍÓÚÑÜ ",
+        "Japanese": "あいうえおかきくけこさしすせそたちつてとなにぬねのまみむめもやゆよらりるれろわをんアイウエオカキクケコサシスセソタチツテトナニヌネノマミムメモヤユヨラリルレロワヲン ",
+        "Korean": "가나다라마바사아자차카타파하거너더러머버서어저처커터퍼허 ",
+        "Chinese": "的一是在不了有人这中大为上个国我以要他时来用们生到作地于出就分对成会可主发年动同工也行 ",
     }
 
     def __init__(
@@ -33,7 +33,7 @@ class TextPatternGenerator:
         self.pattern_length = pattern_length
         self.is_random_length_text = is_random_length_text
         self.is_random_length_pattern = is_random_length_pattern
-        self.languages = languages or ["en"]
+        self.languages = languages or ["English"]
         self.num_records = num_records
         self.min_text_length = min_text_length
         self.max_text_length = max_text_length
@@ -197,7 +197,7 @@ if __name__ == "__main__":
         pattern_length=1,
         is_random_length_text=False,
         is_random_length_pattern=False,
-        languages=["en", "vi", "fr"],
+        languages=["English", "Vietnamese", "French"],
         num_records=10,
         min_text_length=5,
         max_text_length=10,

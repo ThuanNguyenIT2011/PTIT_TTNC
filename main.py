@@ -41,7 +41,8 @@ import matplotlib.pyplot as plt
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
-plt.rcParams['font.family'] = 'Cambria'
+plt.rcParams['font.family'] = 'sans-serif'
+plt.rcParams['font.sans-serif'] = ['Cambria', 'Arial', 'Helvetica', 'DejaVu Sans']
 
 # from mainv3 import SearchFileFrame
 
@@ -1545,9 +1546,9 @@ class CheckPerformanceFrame(ttk.Frame):
         self.pattern_length_var = tk.StringVar(value="1")
         self.is_random_length_text_var = tk.BooleanVar(value=False)
         self.is_random_length_pattern_var = tk.BooleanVar(value=False)
-        self.languages_var = tk.StringVar(value="en,vi,fr")
+        self.languages_var = tk.StringVar(value="English,Vietnamese,French")
 
-        self.language_var = tk.StringVar(value="en")
+        self.language_var = tk.StringVar(value="English")
 
         self.num_records_var = tk.StringVar(value="10")
         self.min_text_length_var = tk.StringVar(value="5")
@@ -1844,7 +1845,7 @@ class CheckPerformanceFrame(ttk.Frame):
 
         selected_lang = self.language_var.get().strip()
         if not selected_lang:
-            return ["en"] # fallback mặc định
+            return ["English"] # fallback mặc định
         return [selected_lang]
 
     def _get_generator(self):

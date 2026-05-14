@@ -5,7 +5,7 @@ class TestTextPatternGenerator(unittest.TestCase):
     def test_generate_basic(self):
         generator = TextPatternGenerator(
             text_length=50, pattern_length=5, num_records=10, 
-            languages=["en"], allow_pattern_not_in_text=False
+            languages=["English"], allow_pattern_not_in_text=False
         )
         data = generator.generate()
         
@@ -19,7 +19,7 @@ class TestTextPatternGenerator(unittest.TestCase):
     def test_allow_pattern_not_in_text(self):
         generator = TextPatternGenerator(
             text_length=20, pattern_length=5, num_records=10, 
-            languages=["en"], allow_pattern_not_in_text=True
+            languages=["English"], allow_pattern_not_in_text=True
         )
         data = generator.generate()
         
@@ -34,7 +34,7 @@ class TestTextPatternGenerator(unittest.TestCase):
         generator = TextPatternGenerator(
             is_random_length_text=True, min_text_length=15, max_text_length=25,
             is_random_length_pattern=True, min_pattern_length=3, max_pattern_length=6,
-            num_records=5, languages=["en"], allow_pattern_not_in_text=False
+            num_records=5, languages=["English"], allow_pattern_not_in_text=False
         )
         data = generator.generate()
         
