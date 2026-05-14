@@ -1760,18 +1760,10 @@ class CheckPerformanceFrame(ttk.Frame):
             style="Modern.Vertical.TScrollbar"
         )
 
-        scroll_x = ttk.Scrollbar(
-            table_container,
-            orient="horizontal",
-            command=self.preview_tree.xview,
-            style="Modern.Horizontal.TScrollbar"
-        )
-
-        self.preview_tree.configure(yscrollcommand=scroll_y.set, xscrollcommand=scroll_x.set)
+        self.preview_tree.configure(yscrollcommand=scroll_y.set)
 
         self.preview_tree.grid(row=0, column=0, sticky="nsew")
         scroll_y.grid(row=0, column=1, sticky="ns")
-        scroll_x.grid(row=1, column=0, sticky="ew")
 
         self.preview_tree.bind("<<TreeviewSelect>>", self.on_preview_select)
 
@@ -2042,18 +2034,18 @@ class CheckPerformanceFrame(ttk.Frame):
         for col, title in headings.items():
             perf_tree.heading(col, text=title)
 
-        perf_tree.column("stt", width=50, anchor="center")
-        # perf_tree.column("language", width=80, anchor="center")
-        perf_tree.column("text", width=220, anchor="w")
-        perf_tree.column("pattern", width=120, anchor="w")
-        perf_tree.column("text_length", width=90, anchor="center")
-        perf_tree.column("pattern_length", width=100, anchor="center")
-        perf_tree.column("bf_count", width=80, anchor="center")
-        perf_tree.column("bm_count", width=80, anchor="center")
-        perf_tree.column("bf_time", width=110, anchor="center")
-        perf_tree.column("bm_time", width=110, anchor="center")
-        perf_tree.column("bf_comp", width=120, anchor="center")
-        perf_tree.column("bm_comp", width=120, anchor="center")
+        perf_tree.column("stt", width=50, anchor="center", stretch=False)
+        # perf_tree.column("language", width=80, anchor="center", stretch=False)
+        perf_tree.column("text", width=220, anchor="w", stretch=False)
+        perf_tree.column("pattern", width=120, anchor="w", stretch=False)
+        perf_tree.column("text_length", width=90, anchor="center", stretch=False)
+        perf_tree.column("pattern_length", width=100, anchor="center", stretch=False)
+        perf_tree.column("bf_count", width=80, anchor="center", stretch=False)
+        perf_tree.column("bm_count", width=80, anchor="center", stretch=False)
+        perf_tree.column("bf_time", width=110, anchor="center", stretch=False)
+        perf_tree.column("bm_time", width=110, anchor="center", stretch=False)
+        perf_tree.column("bf_comp", width=120, anchor="center", stretch=False)
+        perf_tree.column("bm_comp", width=120, anchor="center", stretch=False)
 
         perf_tree.tag_configure("oddrow", background="#f9fafb")
         perf_tree.tag_configure("evenrow", background="#ffffff")
