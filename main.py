@@ -1799,7 +1799,7 @@ class CheckPerformanceFrame(ttk.Frame):
             # highlightthickness=2,
             # highlightbackground="#d1d5db" 
             wrap="word",
-            font=("Cambria", 12),
+            font=("Menlo", 11),
             height=18,
             bg="#ffffff",
             fg="#111827",
@@ -2090,7 +2090,7 @@ class CheckPerformanceFrame(ttk.Frame):
             # highlightthickness=2,
             # highlightbackground="#d1d5db" 
             wrap="word",
-            font=("Cambria", 12),
+            font=("Menlo", 11),
             height=18,
             bg="#ffffff",
             fg="#111827",
