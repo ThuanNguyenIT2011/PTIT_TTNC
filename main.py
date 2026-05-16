@@ -2367,7 +2367,7 @@ class CheckPerformanceFrame(ttk.Frame):
                                  fontsize=10, ha='center', color='#64748b')
                 
                 summary_fig.text(0.5, 0.77, f"Total Records Processed: {len(self.performance_results)}", 
-                                 fontsize=12, ha='center', color='#10b981', fontweight='bold')
+                                 fontsize=12, ha='center', color='#64748b', fontweight='bold')
                 
                 total_bf_time = sum(x["bruteforce_time_ms"] for x in self.performance_results)
                 total_bm_time = sum(x["boyermoore_time_ms"] for x in self.performance_results)
@@ -2400,14 +2400,14 @@ class CheckPerformanceFrame(ttk.Frame):
                     elif col == 0:
                         cell.set_text_props(weight='bold', color='#1e293b')
                         cell.set_facecolor('#f8fafc')
-                    else:
-                        # Tô màu xanh ngọc cho thuật toán có hiệu năng tốt hơn
-                        if row in [1, 2, 3, 4]:
-                            bf_val, bm_val = float(cell_text[row][1]), float(cell_text[row][2])
-                            if col == 1 and bf_val < bm_val:
-                                cell.set_text_props(color='#10b981', weight='bold')
-                            elif col == 2 and bm_val < bf_val:
-                                cell.set_text_props(color='#10b981', weight='bold')
+                    # else:
+                    #     # Tô màu xanh ngọc cho thuật toán có hiệu năng tốt hơn
+                    #     if row in [1, 2, 3, 4]:
+                    #         bf_val, bm_val = float(cell_text[row][1]), float(cell_text[row][2])
+                    #         if col == 1 and bf_val < bm_val:
+                    #             cell.set_text_props(color='#10b981', weight='bold')
+                    #         elif col == 2 and bm_val < bf_val:
+                    #             cell.set_text_props(color='#10b981', weight='bold')
 
                 pdf.savefig(summary_fig)
                 
@@ -2419,12 +2419,12 @@ class CheckPerformanceFrame(ttk.Frame):
                 ax1 = chart_fig.add_subplot(211)
                 ax1.bar(["Brute Force", "Boyer Moore"], [avg_bf_time, avg_bm_time], color=["#94a3b8", "#10b981"], width=0.5)
                 ax1.set_title("Average Processing Time (ms)", pad=15, fontsize=12, fontweight='bold')
-                ax1.set_ylabel("ms")
+                ax1.set_ylabel("Processing Time")
 
                 ax2 = chart_fig.add_subplot(212)
                 ax2.bar(["Brute Force", "Boyer Moore"], [avg_bf_comp, avg_bm_comp], color=["#94a3b8", "#10b981"], width=0.5)
                 ax2.set_title("Average Comparisons", pad=15, fontsize=12, fontweight='bold')
-                ax2.set_ylabel("count")
+                ax2.set_ylabel("Comparison Count")
 
                 for ax_ in [ax1, ax2]:
                     ax_.spines['top'].set_visible(False); ax_.spines['right'].set_visible(False)
