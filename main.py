@@ -1799,7 +1799,7 @@ class CheckPerformanceFrame(ttk.Frame):
             # highlightthickness=2,
             # highlightbackground="#d1d5db" 
             wrap="word",
-            font=("Menlo", 11),
+            font=("Cambria", 12),
             height=18,
             bg="#ffffff",
             fg="#111827",
@@ -1912,12 +1912,12 @@ class CheckPerformanceFrame(ttk.Frame):
         self.preview_detail.insert(
             tk.END,
             (
-                # f"language        : {data['language']}\n"
-                f"text            : {data['text']}\n"
-                f"pattern         : {data['pattern']}\n"
-                f"text_length     : {data['text_length']}\n"
-                f"pattern_length  : {data['pattern_length']}\n"
-                f"pattern_in_text : {data['pattern_in_text']}\n"
+                f"Language: {data['language']}\n"
+                f"Text: {data['text']}\n"
+                f"Pattern: {data['pattern']}\n"
+                f"Text Length: {data['text_length']}\n"
+                f"Pattern Length: {data['pattern_length']}\n"
+                f"Pattern in Text: {data['pattern_in_text']}\n"
             )
         )
         self.preview_detail.config(state="disabled")
@@ -2090,7 +2090,7 @@ class CheckPerformanceFrame(ttk.Frame):
             # highlightthickness=2,
             # highlightbackground="#d1d5db" 
             wrap="word",
-            font=("Menlo", 11),
+            font=("Cambria", 12),
             height=18,
             bg="#ffffff",
             fg="#111827",
@@ -2151,19 +2151,19 @@ class CheckPerformanceFrame(ttk.Frame):
             detail_text.insert(
                 tk.END,
                 (
-                    f"language                : {data['language']}\n"
-                    f"text                    : {data['text']}\n"
-                    f"pattern                 : {data['pattern']}\n"
-                    f"text_length             : {data['text_length']}\n"
-                    f"pattern_length          : {data['pattern_length']}\n"
-                    f"Brute Force positions   : {data['bruteforce_positions']}\n"
-                    f"Brute Force count       : {data['bruteforce_count']}\n"
-                    f"Brute Force time (ms)   : {data['bruteforce_time_ms']:.6f}\n"
-                    f"Brute Force comparisons : {data['bruteforce_comparisons']}\n"
-                    f"Boyer Moore positions   : {data['boyermoore_positions']}\n"
-                    f"Boyer Moore count       : {data['boyermoore_count']}\n"
-                    f"Boyer Moore time (ms)   : {data['boyermoore_time_ms']:.6f}\n"
-                    f"Boyer Moore comparisons : {data['boyermoore_comparisons']}\n"
+                    f"Language: {data['language']}\n"
+                    f"Text: {data['text']}\n"
+                    f"Pattern: {data['pattern']}\n"
+                    f"Text Length: {data['text_length']}\n"
+                    f"Pattern Length: {data['pattern_length']}\n"
+                    f"Brute Force Positions: {data['bruteforce_positions']}\n"
+                    f"Brute Force Count: {data['bruteforce_count']}\n"
+                    f"Brute Force Time (ms): {data['bruteforce_time_ms']:.6f}\n"
+                    f"Brute Force Comparisons: {data['bruteforce_comparisons']}\n"
+                    f"Boyer Moore Positions: {data['boyermoore_positions']}\n"
+                    f"Boyer Moore Count: {data['boyermoore_count']}\n"
+                    f"Boyer Moore Time (ms): {data['boyermoore_time_ms']:.6f}\n"
+                    f"Boyer Moore Comparisons: {data['boyermoore_comparisons']}\n"
                 )
             )
             detail_text.config(state="disabled")
