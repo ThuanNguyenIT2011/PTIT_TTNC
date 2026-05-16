@@ -2025,8 +2025,8 @@ class CheckPerformanceFrame(ttk.Frame):
             "pattern_length": "Pattern Length",
             # "bf_count": "BF Count",
             # "bm_count": "BM Count",
-            "bf_time": "BF Time (ms)",
-            "bm_time": "BM Time (ms)",
+            "bf_time": "BF Time",
+            "bm_time": "BM Time",
             "bf_comp": "BF Comparisons",
             "bm_comp": "BM Comparisons",
         }
@@ -2036,16 +2036,16 @@ class CheckPerformanceFrame(ttk.Frame):
 
         perf_tree.column("stt", width=50, anchor="center", stretch=False)
         # perf_tree.column("language", width=80, anchor="center", stretch=False)
-        perf_tree.column("text", width=170, anchor="w", stretch=False)
-        perf_tree.column("pattern", width=170, anchor="w", stretch=False)
-        perf_tree.column("text_length", width=90, anchor="center", stretch=False)
-        perf_tree.column("pattern_length", width=100, anchor="center", stretch=False)
+        perf_tree.column("text", width=120, anchor="w", stretch=False)
+        perf_tree.column("pattern", width=120, anchor="w", stretch=False)
+        perf_tree.column("text_length", width=125, anchor="center", stretch=False)
+        perf_tree.column("pattern_length", width=125, anchor="center", stretch=False)
         # perf_tree.column("bf_count", width=80, anchor="center", stretch=False)
         # perf_tree.column("bm_count", width=80, anchor="center", stretch=False)
-        perf_tree.column("bf_time", width=110, anchor="center", stretch=False)
-        perf_tree.column("bm_time", width=110, anchor="center", stretch=False)
-        perf_tree.column("bf_comp", width=120, anchor="center", stretch=False)
-        perf_tree.column("bm_comp", width=120, anchor="center", stretch=False)
+        perf_tree.column("bf_time", width=125, anchor="center", stretch=False)
+        perf_tree.column("bm_time", width=125, anchor="center", stretch=False)
+        perf_tree.column("bf_comp", width=125, anchor="center", stretch=False)
+        perf_tree.column("bm_comp", width=125, anchor="center", stretch=False)
 
         perf_tree.tag_configure("oddrow", background="#f9fafb")
         perf_tree.tag_configure("evenrow", background="#ffffff")
